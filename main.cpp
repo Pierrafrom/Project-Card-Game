@@ -1,9 +1,17 @@
-#include <vector>
+//Project Card Game
+//by Pierre
+// and Samuel
+
 #include <iostream>
+#include "Card.h"
 
 using namespace std;
-  
-int main(){
-  cout<<"hello world !"<<endl;
-  return 0
-  }
+
+int main()
+{
+    Card Cdef;
+
+    Cdef.display();
+
+    return 0;
+}

@@ -41,13 +41,16 @@ void Player::display(){
     cout<<"The player "<<_name<<" has "<<_prestige<<" prestige points, only "<<_cards.size()<<" left in his pile ⚡"<<endl;
 }
 
-void Player::init() {
-    cout<<"initialisation of the player's pile of cards"<<endl;
-    vector<Card> reserve = {};
-    if (_cards.size()>=20)
+void Player::init(vector<Card> &reserve)
+{
+    cout << "initialisation of the player's deck" << endl;
+    int size = reserve.size();
+    if (size >= 20) // est ce que les cartes piochés sont encore dans le reserve
     {
         for (int i = 0; i <= 20; i++)
-            reserve.push_back(_cards[i]);
+        {
+            _deck.push_back(reserve[i]);
+        }
     }
 }
 

@@ -54,4 +54,19 @@ void Player::init(vector<Card> &reserve)
     }
 }
 
+bool Player::enough_deck(){
+    return (_prestige<=0);
+}
+
+void Player::next_card(Card& actual_card) {
+    for (int i = 0; i < _deck.size(); i++) {
+        if (_deck[i] == actual_card){
+            cout << _deck[i + 1] << endl;
+            break;
+        }
+    }
+    throw out_of_range("no more cards next !");
+
+}
+
 

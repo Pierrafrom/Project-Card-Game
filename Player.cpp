@@ -38,7 +38,7 @@ int Player::GetPrestige() const {
 
 ///Displaying the information of the targeted player
 void Player::display(){
-    cout<<"The player "<<_name<<" has "<<_prestige<<" prestige points, only "<<_cards.size()<<" left in his pile ⚡"<<endl<;
+    cout<<"The player "<<_name<<" has "<<_prestige<<" prestige points, only "<<_cards.size()<<" left in his pile ⚡"<<endl;
 }
 
 void Player::init() {

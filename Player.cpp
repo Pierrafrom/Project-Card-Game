@@ -1,3 +1,7 @@
+// Project Card Game
+// by Pierre
+// and Samuel
+
 #include "Player.h"
 #include "Card.h"
 #include <iostream>
@@ -19,11 +23,11 @@ Player::Player()
 
 
 ///constructor
-Player::Player(string name, int prestige, vector<Card> cards)
+Player::Player(const string &name, int prestige, const vector<Card> &deck)
 {
     _name = name;
     _prestige = prestige;
-    _deck = cards;
+    _deck = deck;
 }
 
 
@@ -44,9 +48,10 @@ int Player::GetPrestige() const
 void Player::display()
 {
     cout << "The player " << _name << " has " << _prestige << " prestige points, only " << _deck.size()
-         << " left in his pile ⚡" << endl;
+         << " left in his pile " << endl;
 }
 
+/// initialise the deck of a player from a card reserve
 void Player::init(vector<Card> &reserve)
 {
     cout << "initialisation of the player's deck" << endl;
@@ -60,11 +65,13 @@ void Player::init(vector<Card> &reserve)
     }
 }
 
-bool Player::enoughCards()
+// True if the player has enough cards to play
+bool Player::enoughCards() const
 {
     return (_prestige >= 0);
 }
 
+// get the next card of the player and remove it from his deck
 void Player::nextCard(Card &card)
 {
     int size = _deck.size();

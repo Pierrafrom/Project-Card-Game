@@ -69,7 +69,7 @@ public:
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * Display of a Card                                                                             *
+    * Short display of a Card                                                                       *
     * Displays all data associated with the target Card                                             *
     *                                                                                               *
     * Input parameters                                                                              *
@@ -87,11 +87,163 @@ public:
     *                                                                                               *
     *************************************************************************************************
     */
-    void display() const;
+    void displayShort() const;
 
-    int PhysicalDamage(const Card &) const;
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * returns the physical damage taken                                                             *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns an integer                                                                            *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    int physicalDamage(const Card &card) const;
 
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * Long display of a Card                                                                        *
+    * Displays all data associated with the target Card                                             *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * Empty because we don't need any parameters to display a Card                                  *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * Empty because it's a procedure                                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    void displayLong() const;
+
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * returns the magical damage taken                                                              *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns an integer                                                                            *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    int magicalDamage(const Card &card) const;
+
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * returns the function physicalDamage(const Card &card)                                         *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns an int                                                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    int operator+(const Card &card) const;
+
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * returns the function magicalDamage(const Card &card)                                          *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns an int                                                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    int operator^(const Card &card) const;
 };
 
+/*
+*************************************************************************************************
+*                                                                                               *
+* Description                                                                                   *
+* ===========                                                                                   *
+* returns the short display of a card                                                           *
+*                                                                                               *
+*                                                                                               *
+*                                                                                               *                                                                                               *
+* Input parameters                                                                              *
+* ====================                                                                          *
+* An output stream and the card we want to display                                              *
+*                                                                                               *
+*                                                                                               *
+* Output parameters                                                                             *
+* ====================                                                                          *
+* Nothing because it's a procedure                                                              *
+*                                                                                               *
+*                                                                                               *
+*                                                                                               *
+*                                                                                               *
+*                                                                                               *
+*************************************************************************************************
+*/
+void operator<<(ostream &os, const Card &card);
 
 #endif //PROJECT_CARD_GAME_CARD_H

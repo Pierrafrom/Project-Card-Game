@@ -1,3 +1,7 @@
+// Project Card Game
+// by Pierre
+// and Samuel
+
 #include "Card.h"
 #include <iostream>
 
@@ -86,7 +90,8 @@ int Card::magicalDamage(const Card &card) const
 }
 
 // operator + for physicalDamage
-int Card::operator+(const Card &card) const{
+int Card::operator+(const Card &card) const
+{
     return physicalDamage(card);
 }
 
@@ -97,7 +102,8 @@ int Card::operator^(const Card &card) const
 }
 
 // operator << for display
-void operator<<(ostream &os, const Card &card){
+void operator<<(ostream &os, const Card &card)
+{
     card.displayShort();
 }
 

@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// Empty constructor
 Card::Card()
 {
     _name = "bare hands";
@@ -11,6 +12,7 @@ Card::Card()
     _magic = 0;
 }
 
+// Constructor
 Card::Card(const string &name, int attack, int defense, int magic)
 {
     _name = name;
@@ -19,7 +21,8 @@ Card::Card(const string &name, int attack, int defense, int magic)
     _magic = magic;
 }
 
-void Card::display() const
+// Display Long
+void Card::displayLong() const
 {
     cout << "****************************" << endl;
     cout << "name: " << _name << endl;
@@ -29,7 +32,14 @@ void Card::display() const
     cout << "****************************" << endl;
 }
 
-int Card::PhysicalDamage(const Card &card) const
+// Display Long
+void Card::displayShort() const
+{
+    cout << _name << " [ " << _attack << " ; " << _defense << " ; " << _magic << " ] " << endl;
+}
+
+// Physical damages
+int Card::physicalDamage(const Card &card) const
 {
     if (_attack > card._attack)
     {
@@ -39,18 +49,55 @@ int Card::PhysicalDamage(const Card &card) const
         }
         else
         {
-            return (_attack - card._defense);
+            return -(_attack - card._defense);
         }
     }
     else
     {
-        if (card._attack > _defense)
-        {
-            return -(card._attack - _defense);
-        }
-        else
+        if (card._attack == _attack)
         {
             return 0;
         }
+        else
+        {
+            if (card._attack > _defense)
+            {
+                return (card._attack - _defense);
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }
+
+// Magical damages
+int Card::magicalDamage(const Card &card) const
+{
+    if (_magic == card._magic)
+    {
+        return 0;
+    }
+    else
+    {
+        return (card._magic - _magic);
+    }
+}
+
+// operator + for physicalDamage
+int Card::operator+(const Card &card) const{
+    return physicalDamage(card);
+}
+
+// operator ^ for magicalDamage
+int Card::operator^(const Card &card) const
+{
+    return magicalDamage(card);
+}
+
+// operator << for display
+void operator<<(ostream &os, const Card &card){
+    card.displayShort();
+}
+

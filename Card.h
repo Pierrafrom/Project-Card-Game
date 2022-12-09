@@ -172,7 +172,7 @@ public:
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * returns the function physicalDamage(const Card &card)                                         *
+    * returns the method physicalDamage(const Card &card)                                           *
     *                                                                                               *
     *                                                                                               *
     *                                                                                               *                                                                                               *
@@ -198,7 +198,7 @@ public:
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * returns the function magicalDamage(const Card &card)                                          *
+    * returns the method magicalDamage(const Card &card)                                            *
     *                                                                                               *
     *                                                                                               *
     *                                                                                               *                                                                                               *

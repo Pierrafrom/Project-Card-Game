@@ -1,5 +1,5 @@
-#ifndef UNTITLED5_PLAYER_H
-#define UNTITLED5_PLAYER_H
+#ifndef PROJECT_CARD_GAME_PLAYER_H
+#define PROJECT_CARD_GAME_PLAYER_H
 
 #include <vector>
 #include <iostream>
@@ -12,7 +12,7 @@ class Player {
     int _prestige;
     vector<Card> _deck;
 
-    public :
+public :
     /*
     *************************************************************************************************
     *                                                                                               *
@@ -97,7 +97,7 @@ class Player {
     */
 
     void init(vector<Card>&);
-    
+
     /*
     *************************************************************************************************
     *                                                                                               *
@@ -109,8 +109,8 @@ class Player {
     *                                                                                               *
     *************************************************************************************************
     */
-    
-    bool enough_deck();
+
+    bool enoughCards();
 
     /*
     *************************************************************************************************
@@ -123,11 +123,10 @@ class Player {
     *                                                                                               *
     *************************************************************************************************
     */
-    
-    void next_card(Card &);
 
+    void nextCard(Card &);
+
+    void playsACard(Player &player);
 };
+#endif //PROJECT_CARD_GAME_PLAYER_H
 
-
-
-#endif //UNTITLED5_PLAYER_H

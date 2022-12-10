@@ -27,6 +27,7 @@ public:
     *                                                                                               *
     *************************************************************************************************
     */
+    
     Game();
 
     /*
@@ -40,19 +41,34 @@ public:
    *                                                                                               *
    *************************************************************************************************
    */
+    
     Game(const vector<Card> &reserve, Player &player1, Player &player2);
 
     /*
-   *************************************************************************************************
-   *                                                                                               *
-   *                                                                                               *
-   * Description :                                                                                 *
-   * ===========                                                                                   *
-   * Game constructor                                                                              *
-   *                                                                                               *
-   *                                                                                               *
-   *************************************************************************************************
-   */
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * returns if the game has ended or not, if it has, the player object taken as parameter         *
+    * takes the information of the winner between both player                                       *
+    *                                                                                               *
+    *                                                                                               *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * a Player object that is updated when the game ends                                            *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * a boolean which indicates whether the game has ended or not                                   *
+    * if there is a draw, throw an exception                                                        *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    
     bool ended(Player &winner);
 };
 

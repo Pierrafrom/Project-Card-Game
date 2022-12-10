@@ -21,10 +21,22 @@ public :
     /*
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
-    * Empty constructor with default values                                                         *
+    * Empty constructor                                                                             *
+    * Constructs a Player named "Yugi" with 25 prestige points and a vector of Card with 5 cards    *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * Empty because we don't need any parameters to create default card                             *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * Empty because it's a constructeur                                                             *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
     *                                                                                               *
     *                                                                                               *
     *************************************************************************************************
@@ -32,16 +44,28 @@ public :
     Player();
 
     /*
-    *************************************************************************************************
-    *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
-    * ===========                                                                                   *
-    * Player constructor                                                                            *
-    *                                                                                               *
-    *                                                                                               *
-    *************************************************************************************************
-    */
+     *************************************************************************************************
+     *                                                                                               *
+     * Description                                                                                   *
+     * ===========                                                                                   *
+     * Player on the basis of given information                                                      *
+     * Constructs a Player with given name, prestige and a deck                                      *
+     *                                                                                               *
+     * Input parameters                                                                              *
+     * ====================                                                                          *
+     * A string for the name an integer for the prestige points and a vector of Card                 *
+     *                                                                                               *
+     *                                                                                               *
+     * Output parameters                                                                             *
+     * ====================                                                                          *
+     * Empty because it's a constructor                                                              *
+     *                                                                                               *
+     *                                                                                               *
+     *                                                                                               *
+     *                                                                                               *
+     *                                                                                               *
+     *************************************************************************************************
+     */
     Player(const string &name, int prestige, const vector<Card> &deck);
 
     /*
@@ -112,28 +136,55 @@ public :
     /*
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
-    * Prints the next card if there is one if not throw an exception                                *
+    * Prints the next card if there is one if not throws an exception                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * a Card object                                                                                 *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * prints the next card of the target's deck                                                     *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
     *                                                                                               *
     *                                                                                               *
     *************************************************************************************************
     */
+
     void nextCard(Card &);
-    
+
     /*
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
     * changes the prestige of the targeted player / player taken as parameter                       *
     * it depends on the stats of the players next card                                              *
     *                                                                                               *
+    *                                                                                               *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * a player object                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * update the object taken as parameter                                                          *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
     *************************************************************************************************
     */
-    
+
     void playsACard(Player &player);
 
 };

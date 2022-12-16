@@ -13,17 +13,19 @@ Player::Player()
 {
     _name = "Yugi";
     _prestige = 25;
+    /*
     Card righthand("RightHand", 1, 0, 0);
     Card lefthand("LeftHand", 0, 1, 0);
     Card head("Head", 1, -2, 0);
     Card mouth("Mouth", 1, -1, 2);
     Card knee("Knee", 2, 0, 0);
-    _deck = {righthand, lefthand, head, mouth, knee};
+     */
+    _deck = {0,1,2,3,4};
 }
 
 
 ///constructor
-Player::Player(const string &name, int prestige, const vector<Card> &deck)
+Player::Player(const string &name, int prestige, const vector<int> &deck)
 {
     _name = name;
     _prestige = prestige;
@@ -60,7 +62,7 @@ void Player::init(vector<Card> &reserve)
     {
         for (int i = 0; i <= 20; i++)
         {
-            _deck.push_back(reserve[i]);
+            _deck.push_back(i);
         }
     }
 }
@@ -68,11 +70,17 @@ void Player::init(vector<Card> &reserve)
 // True if the player has enough cards to play
 bool Player::enoughCards() const
 {
-    return (_prestige >= 0);
+    return (!_deck.empty());
+}
+
+// True if the player has enough cards to play
+bool Player::enoughPrestige() const
+{
+    return (_prestige > 0);
 }
 
 // get the next card of the player and remove it from his deck
-void Player::nextCard(Card &card)
+void Player::nextCard(int &card)
 {
     int size = _deck.size();
     if (size > 0)
@@ -87,13 +95,13 @@ void Player::nextCard(Card &card)
 }
 
 // update prestige after a play
-void Player::playsACard(Player &player)
+void Player::playsACard(Player &player, const vector<int> &reserve)
 {
-    Card c, c1;
+    int c, c1;
     this->nextCard(c);
     player.nextCard(c1);
-    int resPhysicalMatch = c + c1;
-    int resMagicalMatch = c ^ c1;
+    int resPhysicalMatch = reserve[c] + reserve[c1];
+    int resMagicalMatch = reserve[c] ^ reserve[c1];
     if (resPhysicalMatch > 0)
     {
         _prestige -= resPhysicalMatch;

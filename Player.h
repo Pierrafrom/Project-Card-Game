@@ -15,7 +15,7 @@ class Player
 {
     string _name;
     int _prestige;
-    vector<Card> _deck;
+    vector<int> _deck;
 
 public :
     /*
@@ -53,7 +53,7 @@ public :
      *                                                                                               *
      * Input parameters                                                                              *
      * ====================                                                                          *
-     * A string for the name an integer for the prestige points and a vector of Card                 *
+     * A string for the name an integer for the prestige points and a vector of int                  *
      *                                                                                               *
      *                                                                                               *
      * Output parameters                                                                             *
@@ -66,7 +66,7 @@ public :
      *                                                                                               *
      *************************************************************************************************
      */
-    Player(const string &name, int prestige, const vector<Card> &deck);
+    Player(const string &name, int prestige, const vector<int> &deck);
 
     /*
     *************************************************************************************************
@@ -113,7 +113,7 @@ public :
     *                                                                                               *
     * Description :                                                                                 *
     * ===========                                                                                   *
-    * Initialising the targeted player's pile of cards                                              *
+    * Initialising the targeted player's pile of int                                                *
     *                                                                                               *
     *                                                                                               *
     *************************************************************************************************
@@ -132,6 +132,19 @@ public :
     *************************************************************************************************
     */
     bool enoughCards() const;
+
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    *                                                                                               *
+    * Description :                                                                                 *
+    * ===========                                                                                   *
+    * returns true if there is still in the game                                                    *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    bool enoughPrestige() const;
 
     /*
     *************************************************************************************************
@@ -158,7 +171,7 @@ public :
     *************************************************************************************************
     */
 
-    void nextCard(Card &);
+    void nextCard(int &card);
 
     /*
     *************************************************************************************************
@@ -184,8 +197,8 @@ public :
     *                                                                                               *
     *************************************************************************************************
     */
+    void playsACard(Player &player, const vector<int> &reserve);
 
-    void playsACard(Player &player);
 
 };
 

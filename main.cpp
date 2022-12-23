@@ -5,8 +5,6 @@
 #include <iostream>
 #include "Card.h"
 #include "Player.h"
-#include "Game.h"
-#include "test.h"
 #include "main_test.h"
 #include <vector>
 

@@ -1,7 +1,3 @@
-//
-// Created by samue on 23/12/2022.
-//
-
 #include "test.h"
 #include "Player.h"
 #include "Card.h"
@@ -32,8 +28,12 @@ using namespace std;
 
         // creating of a stream in order to verify the proper display of a card
         ostringstream out;
+        /*
+        déclaration d'objet de la classe ostream, tout ce qui sera envoyé dans la variable 'out'
+        sera stocké dans la chaîne de caractère associée à l'objet 'out'
+        */
         streambuf* cout_buf = cout.rdbuf();
-        cout.rdbuf(out.rdbuf());
+        cout.rdbuf(out.rdbuf()); //on redirige cout vers 'out'
 
         // calling the long display function
         C1.displayLong();
@@ -51,8 +51,12 @@ using namespace std;
 
         // creating of a stream in order to verify the proper display of a card
         ostringstream out;
+        /*
+        déclaration d'objet de la classe ostream, tout ce qui sera envoyé dans la variable 'out'
+        sera stocké dans la chaîne de caractère associée à l'objet 'out'
+        */
         streambuf* cout_buf = cout.rdbuf();
-        cout.rdbuf(out.rdbuf());
+        cout.rdbuf(out.rdbuf()); //on redirige cout vers 'out'
 
         // calling the short display function
         cout<<C1;

@@ -60,12 +60,6 @@ int main()
     P0.display();
     cout << endl;
 
-
-
-    cout<<"-----------------------------test des fonctions display------------------------------"<<endl;
-    testdisplayLong();
-    testdisplayShort();
-
     //Tests à réaliser quand on aura fait la lecture des fichiers
     cout << "------------------ test for init --------------------------------------------------" << endl;
     cout << "------------------ test for enoughCards --------------------------------------------------" << endl;

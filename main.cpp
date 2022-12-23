@@ -6,6 +6,8 @@
 #include "Card.h"
 #include "Player.h"
 #include "Game.h"
+#include "test.h"
+#include "main_test.h"
 #include <vector>
 
 using namespace std;
@@ -28,90 +30,7 @@ int main()
     // Tests
     cout << "############################ Start Testing ###################################################" << endl;
 
-    cout << "------------------ test for Display -----------------------------------------------------" << endl;
-    cout << "Long display: " << endl;
-    C1.displayLong();
-    cout << endl << "Short display: " << endl;
-    cout << C2;
-    cout << endl;
-
-    cout << "------------------ test for physicalDamage -----------------------------------------------------" << endl;
-    cout << "test for a win (low defense): ";
-    if (C1 + C2 == -5)
-    {
-        cout << "OK" << endl;
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    cout << "test for a win (high defense): ";
-    if (C1 + C4 == 0)
-    {
-        cout << "OK" << endl;
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    cout << "test for a lose (low defense): ";
-    if (C2 + C1 == 5)
-    {
-        cout << "OK" << endl;
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    cout << "test for a lose (high defense): ";
-    if (C4 + C2 == 0)
-    {
-        cout << "OK" << endl;
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    cout << "test for a draw: ";
-    if (C1 + C3 == 0)
-    {
-        cout << "OK" << endl;
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    cout << endl;
-
-    cout << "------------------ test for physicalDamage -----------------------------------------------------" << endl;
-    cout << "test for a win : ";
-    if ((C1 ^ C4) == -10)
-    {
-        cout << "OK" << endl;
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    cout << "test for a lose : ";
-    if ((C1 ^ C2) == 5)
-    {
-        cout << "OK" << endl;
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    cout << "test for a draw: ";
-    if ((C1 ^ C3) == 0)
-    {
-        cout << "OK" << endl;
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    cout << endl;
+    main_test();
 
     cout << "------------------ test for GetName (Player) --------------------------------------------------" << endl;
     cout << "Regular case: ";
@@ -140,6 +59,12 @@ int main()
     cout << "------------------ test for display (Player) --------------------------------------------------" << endl;
     P0.display();
     cout << endl;
+
+
+
+    cout<<"-----------------------------test des fonctions display------------------------------"<<endl;
+    testdisplayLong();
+    testdisplayShort();
 
     //Tests à réaliser quand on aura fait la lecture des fichiers
     cout << "------------------ test for init --------------------------------------------------" << endl;

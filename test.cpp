@@ -2,7 +2,7 @@
 // by Pierre
 // and Samuel
 
-#include "Tests.h"
+#include "test.h"
 #include <iostream>
 #include "Card.h"
 #include "Player.h"

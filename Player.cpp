@@ -8,7 +8,7 @@
 
 using namespace std;
 
-///default constructor
+// Default constructor
 Player::Player()
 {
     _name = "Yugi";
@@ -20,11 +20,10 @@ Player::Player()
     Card mouth("Mouth", 1, -1, 2);
     Card knee("Knee", 2, 0, 0);
      */
-    _deck = {0,1,2,3,4};
+    _deck = {0, 1, 2, 3, 4};
 }
 
-
-///constructor
+// Full constructor
 Player::Player(const string &name, int prestige, const vector<int> &deck)
 {
     _name = name;
@@ -32,38 +31,31 @@ Player::Player(const string &name, int prestige, const vector<int> &deck)
     _deck = deck;
 }
 
-
-///get the name of targeted player
+// Get the name of targeted player
 string Player::GetName() const
 {
     return _name;
 }
 
-
-///get the number prestige points of targeted player
+// Get the number prestige points of targeted player
 int Player::GetPrestige() const
 {
     return _prestige;
 }
 
-///Displaying the information of the targeted player
-void Player::display()
+// Displaying the information of the targeted player
+void Player::display() const
 {
     cout << "The player " << _name << " has " << _prestige << " prestige points, only " << _deck.size()
          << " left in his pile " << endl;
 }
 
-/// initialise the deck of a player from a card reserve
-void Player::init(vector<Card> &reserve)
+// Initialise the deck of a player from a card reserve
+void Player::init()
 {
-    cout << "initialisation of the player's deck" << endl;
-    int size = reserve.size();
-    if (size >= 20)
+    for (int i = 0; i < 20; i++)
     {
-        for (int i = 0; i <= 20; i++)
-        {
-            _deck.push_back(i);
-        }
+        _deck.push_back(i);
     }
 }
 
@@ -79,7 +71,7 @@ bool Player::enoughPrestige() const
     return (_prestige > 0);
 }
 
-// get the next card of the player and remove it from his deck
+// Get the next card of the player and remove it from his deck
 void Player::nextCard(int &card)
 {
     int size = _deck.size();
@@ -94,8 +86,8 @@ void Player::nextCard(int &card)
     }
 }
 
-// update prestige after a play
-void Player::playsACard(Player &player, const vector<int> &reserve)
+// Update prestige after a play
+void Player::playsACard(Player &player, const vector<Card> &reserve)
 {
     int c, c1;
     this->nextCard(c);
@@ -120,4 +112,59 @@ void Player::playsACard(Player &player, const vector<int> &reserve)
     }
 }
 
+// The following methods are not in the instructions, but we had them because they are useful for tests
+
+// Modify the prestige number of a player
+void Player::modifyPrestige(int num)
+{
+    _prestige = num;
+}
+
+// Clear the deck of the player
+void Player::clearDeck()
+{
+    _deck.clear();
+}
+
+// Compare the player's deck with a given deck
+bool Player::compareDeck(const vector<int> &vector)
+{
+    bool ok = true;
+    int size = _deck.size();
+    if (vector.size() != size)
+    {
+        ok = false;
+    }
+    if (ok)
+    {
+        int i = 0;
+        while (ok && i < size)
+        {
+            if (_deck[i] != vector[i])
+            {
+                ok = false;
+            }
+            i++;
+        }
+    }
+    return ok;
+}
+
+// Get the deck of a player
+vector<int> Player::getDeck()
+{
+    return _deck;
+}
+
+// modify the deck of a player
+void Player::modifyDeck(const vector<int> &deck)
+{
+    _deck = deck;
+}
+
+//operator for equality
+bool Player::operator==(const Player &player)
+{
+    return (_name==player._name && _prestige==player._prestige && this->compareDeck(player._deck));
+}
 

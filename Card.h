@@ -1,3 +1,7 @@
+// Project Card Game
+// by Pierre
+// and Samuel
+
 #ifndef PROJECT_CARD_GAME_CARD_H
 #define PROJECT_CARD_GAME_CARD_H
 
@@ -97,7 +101,7 @@ public:
     * returns the physical damage taken                                                             *
     *                                                                                               *
     *                                                                                               *
-    *                                                                                               *                                                                                               *
+    *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * One object Card which is targeted and one object Card as a parameter                          *
@@ -172,10 +176,10 @@ public:
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * returns the method physicalDamage(const Card &card)                                           *
+    * Run the method physicalDamage(const Card &card)                                               *
     *                                                                                               *
     *                                                                                               *
-    *                                                                                               *                                                                                               *
+    *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * One object Card which is targeted and one object Card as a parameter                          *
@@ -198,10 +202,10 @@ public:
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * returns the method magicalDamage(const Card &card)                                            *
+    * Run the method magicalDamage(const Card &card)                                                *
     *                                                                                               *
     *                                                                                               *
-    *                                                                                               *                                                                                               *
+    *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * One object Card which is targeted and one object Card as a parameter                          *
@@ -218,6 +222,42 @@ public:
     *************************************************************************************************
     */
     int operator^(const Card &card) const;
+
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * True if the name, the attack, the magic and the defense of the target object and of the       *
+    * source object are the same.                                                                   *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns a boolean                                                                             *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    bool operator==(const Card &card) const;
+
+    // The following methods are not in the instructions, but we had them because they are useful for tests
+
+    string getName() const;
+
+    int getAttack() const;
+
+    int getDefense() const;
+
+    int getMagic() const;
 };
 
 /*
@@ -228,7 +268,7 @@ public:
 * returns the short display of a card                                                           *
 *                                                                                               *
 *                                                                                               *
-*                                                                                               *                                                                                               *
+*                                                                                               *
 * Input parameters                                                                              *
 * ====================                                                                          *
 * An output stream and the card we want to display                                              *

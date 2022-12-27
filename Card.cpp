@@ -25,7 +25,7 @@ Card::Card(const string &name, int attack, int defense, int magic)
     _magic = magic;
 }
 
-// Display Long
+// Display long
 void Card::displayLong() const
 {
     cout << "****************************" << endl;
@@ -36,7 +36,7 @@ void Card::displayLong() const
     cout << "****************************" << endl;
 }
 
-// Display Long
+// Display short
 void Card::displayShort() const
 {
     cout << _name << " [ " << _attack << " ; " << _defense << " ; " << _magic << " ] " << endl;
@@ -101,9 +101,42 @@ int Card::operator^(const Card &card) const
     return magicalDamage(card);
 }
 
-// operator << for display
+// operator << for display short
 void operator<<(ostream &os, const Card &card)
 {
     card.displayShort();
+}
+
+//operator for equality
+bool Card::operator==(const Card &card) const
+{
+    return (this->_name==card._name && this->_attack==card._attack &&
+    this->_defense==card._defense && this->_magic==card._magic);
+}
+
+// The following methods are not in the instructions, but we had them because they are useful for tests
+
+// Get the Name
+string Card::getName() const
+{
+    return _name;
+}
+
+// Get the attack
+int Card::getAttack() const
+{
+    return _attack;
+}
+
+// Get the defense
+int Card::getDefense() const
+{
+    return _defense;
+}
+
+// Get the magic
+int Card::getMagic() const
+{
+    return _magic;
 }
 

@@ -27,7 +27,6 @@ public:
     *                                                                                               *
     *************************************************************************************************
     */
-    
     Game();
 
     /*
@@ -41,7 +40,6 @@ public:
    *                                                                                               *
    *************************************************************************************************
    */
-    
     Game(const vector<Card> &reserve, Player &player1, Player &player2);
 
     /*
@@ -52,7 +50,7 @@ public:
     * returns if the game has ended or not, if it has, the player object taken as parameter         *
     * takes the information of the winner between both player                                       *
     *                                                                                               *
-    *                                                                                               *                                                                                               *
+    *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * a Player object that is updated when the game ends                                            *
@@ -68,8 +66,36 @@ public:
     *                                                                                               *
     *************************************************************************************************
     */
-    
-    bool ended(Player &winner);
+    bool ended(Player &winner) const;
+
+    /*
+   *************************************************************************************************
+   *                                                                                               *
+   *                                                                                               *
+   * Description :                                                                                 *
+   * ===========                                                                                   *
+   * one round ouf the game is done                                                                *
+   *                                                                                               *
+   *                                                                                               *
+   *************************************************************************************************
+   */
+    void operator++();
+
+    bool IsGameFinished() const;
+
+    // The following methods are not in the instructions, but we had them because they are useful for tests
+
+    bool compareReserve(const vector<Card> &vector) const;
+
+    void modifyPlayerTwoPrestige(int num);
+
+    void clearPlayerTwoDeck();
+
+    bool compareGame(const Game &game);
+
+    Player GetPlayerOne();
+
+    Player GetPlayerTwo();
 };
 
 #endif //PROJECT_CARD_GAME_GAME_H

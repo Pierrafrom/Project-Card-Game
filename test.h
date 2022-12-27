@@ -1,13 +1,31 @@
-//
-// Created by samue on 23/12/2022.
-//
+// Project Card Game
+// by Pierre
+// and Samuel
 
-#ifndef PROJECT_CARD_GAME_MAIN_TEST_H
-#define PROJECT_CARD_GAME_MAIN_TEST_H
+#ifndef PROJECT_CARD_GAME_TESTS_H
+#define PROJECT_CARD_GAME_TESTS_H
 
-void testdisplayLong();
-void testdisplayShort();
-void testphysicalDamage();
-void testmagicalDamage();
+void testAll();
+//################# Card ####################################################
+void testCardConstructors();
+void testDisplayLongMethod();
+void testDisplayShortMethod();
+void testPhysicalDamageMethod();
+void testMagicalDamage();
+void testCardEqualityOperator();
+//################# Player ##################################################
+void testConstructorsPlayer();
+void testGettersMethods();
+void testDisplayMethod();
+void testInitMethod();
+void testEnoughCardsMethod();
+void testEnoughPrestigeMethod();
+void testNextCardMethod();
+void testPlaysACardMethod();
+//################ Game  ###################################################
+void testEndedMethod();
+void testConstructorsGame();
+void testIsGameFinishedMethod();
+void testIncrementOperator();
 
-#endif //PROJECT_CARD_GAME_MAIN_TEST_H
+#endif //PROJECT_CARD_GAME_TESTS_H

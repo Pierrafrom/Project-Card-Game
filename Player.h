@@ -15,6 +15,8 @@ class Player
 {
     string _name;
     int _prestige;
+    // here, we use an integer vector. the integers are the indices of the cards in the reserve.
+    // This avoids using objects as parameters and therefore saving resources
     vector<int> _deck;
 
 public :
@@ -97,15 +99,27 @@ public :
     /*
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
-    * Displaying targeted player information                                                        *
+    * Displays information about the player                                                         *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * Empty because we don't need any parameters to display a Player                                *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * Empty because it's a procedure                                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
     *                                                                                               *
     *                                                                                               *
     *************************************************************************************************
     */
-    void display();
+    void display() const;
 
     /*
     *************************************************************************************************
@@ -118,7 +132,7 @@ public :
     *                                                                                               *
     *************************************************************************************************
     */
-    void init(vector<Card> &);
+    void init();
 
     /*
     *************************************************************************************************
@@ -170,7 +184,6 @@ public :
     *                                                                                               *
     *************************************************************************************************
     */
-
     void nextCard(int &card);
 
     /*
@@ -197,10 +210,21 @@ public :
     *                                                                                               *
     *************************************************************************************************
     */
-    void playsACard(Player &player, const vector<int> &reserve);
+    void playsACard(Player &player, const vector<Card> &reserve);
 
+    // The following methods are not in the instructions, but we had them because they are useful for tests
 
+    void modifyPrestige(int num);
+
+    void clearDeck();
+
+    bool compareDeck(const vector<int> &);
+
+    vector<int> getDeck();
+
+    void modifyDeck(const vector<int> &deck);
+
+    bool operator==(const Player &player);
 };
 
 #endif //PROJECT_CARD_GAME_PLAYER_H
-

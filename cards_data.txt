@@ -1,0 +1,19 @@
+Sword,10,5,0
+Shield,0,10,0
+Staff,5,0,11
+Dagger,5,0,5
+Mace,10,0,0
+Armor,0,15,0
+Helmet,0,5,0
+Bow,5,0,0
+Arrows,7,0,0
+Fireball,5,0,13
+Lightning Bolt,8,0,18
+Healing Potions,0,0,10
+Mana Potions,0,0,15
+Poisoned Dagger,8,0,0
+Explosive Arrows,10,0,0
+Giant Hammer,15,5,0
+Wand of Telekinesis,5,0,16
+Ring of Invisibility,0,1,35
+Amulet of Regeneration,0,0,12

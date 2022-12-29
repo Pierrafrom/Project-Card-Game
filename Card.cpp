@@ -4,6 +4,9 @@
 
 #include "Card.h"
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -140,3 +143,56 @@ int Card::getMagic() const
     return _magic;
 }
 
+void Card::fill(const string &line) {
+    // opening the file
+    ifstream file;
+    file.open("C:/Users/samue/Project-Card-Game-main/cards_data.txt");
+
+    if (!file.is_open()) {
+        cout << "Error while opening the file" << endl;
+    }
+    else {
+        string actual_line;
+
+        while (getline(file, actual_line)) {
+
+            if(actual_line==line) {
+                // declaration of a string flow in the beginning of each line
+                istringstream stream(actual_line);
+
+                // declaration of a string for the first part of the line
+                string part1;
+/*
+                // declaration of an int for the second part of each line
+                int part2;
+
+                // declaration of an int for the third part of each line
+                int part3;
+
+                // declaration of an int for the fourth part of each line
+                int part4 ;*/
+
+                getline(stream, part1, ',');
+
+
+                // takes the part 1 of the line (string type)
+
+                _name = part1;
+
+                // takes the part 2 of the line (int type)
+                stream >> _attack;
+
+
+                // takes the part 3 of the line (int type)
+                stream >> _defense;
+
+
+                // takes the part 4 of the line (int type)
+                stream >> _magic;
+            }
+
+        }
+    }
+    file.close();
+
+}

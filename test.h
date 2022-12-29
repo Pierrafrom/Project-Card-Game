@@ -13,6 +13,7 @@ void testDisplayShortMethod();
 void testPhysicalDamageMethod();
 void testMagicalDamage();
 void testCardEqualityOperator();
+void test_fill();
 //################# Player ##################################################
 void testConstructorsPlayer();
 void testGettersMethods();

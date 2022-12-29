@@ -23,6 +23,7 @@ void testAll()
     testPhysicalDamageMethod();
     testMagicalDamage();
     testCardEqualityOperator();
+    test_fill();
     // Player
     cout << "----------------- Player --------------------------------" << endl;
     testConstructorsPlayer();
@@ -252,6 +253,30 @@ void testCardEqualityOperator()
     if (ok)
     {
         cout << "Equality operator : OK" << endl;
+    }
+}
+
+
+void test_fill(){
+    bool ok = true;
+    Card C1;
+    C1.fill("Ring of Invisibility,0,1,35");
+    cout<< "now displaying the card C1 : " <<endl;
+    C1.displayShort();
+    cout<<"ping"<<endl;
+
+    // Test the function method by capturing its output
+    stringstream output;
+    streambuf *old = cout.rdbuf(output.rdbuf());
+    cout << C1;
+    cout.rdbuf(old);
+
+    // Check that the output is as expected
+    string expectedOutput = "Ring of Invisibility [ 0 ; 1 ; 35 ] \n";
+    if (output.str() != expectedOutput)
+    {
+        ok = false;
+        cout << "Error: The result of the fill method is incorrect" << endl;
     }
 }
 

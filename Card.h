@@ -258,6 +258,33 @@ public:
     int getDefense() const;
 
     int getMagic() const;
+    
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * the targeted card is filled with the information of the line taken as input                   *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * a string representing a line in the file                                                      *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * fills _name, _attack, _defense and _magic with the information found on the line              *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    void fill(const string & line);
+    
 };
 
 /*

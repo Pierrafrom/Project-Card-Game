@@ -19,10 +19,12 @@ void testConstructorsPlayer();
 void testGettersMethods();
 void testDisplayMethod();
 void testInitMethod();
+void testShuffleMethod();
 void testEnoughCardsMethod();
 void testEnoughPrestigeMethod();
 void testNextCardMethod();
 void testPlaysACardMethod();
+void testletChooseMethod();
 //################ Game  ###################################################
 void testEndedMethod();
 void testConstructorsGame();

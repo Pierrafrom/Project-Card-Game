@@ -20,7 +20,7 @@ int main()
 #ifndef TEST
 int main()
 {
-    cout << "Version without tests" << endl;
+    cout << "No test version" << endl;
     return 0;
 }
 #endif

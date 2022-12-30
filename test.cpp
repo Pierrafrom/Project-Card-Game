@@ -30,10 +30,12 @@ void testAll()
     testGettersMethods();
     testDisplayMethod();
     testInitMethod();
+    testShuffleMethod();
     testEnoughCardsMethod();
     testEnoughPrestigeMethod();
     testNextCardMethod();
     testPlaysACardMethod();
+    testletChooseMethod();
     // Game
     cout << "----------------- Game ----------------------------------" << endl;
     testConstructorsGame();
@@ -109,7 +111,7 @@ void testDisplayShortMethod()
     // Create a card with a name, attack, defense, and magic
     Card card("Gol d Roger", 10, 8, 10);
 
-    // Test the displayLong method by capturing its output
+    // Test the displayShort method by capturing its output
     stringstream output;
     streambuf *old = cout.rdbuf(output.rdbuf());
     cout << card;
@@ -120,7 +122,7 @@ void testDisplayShortMethod()
     if (output.str() != expectedOutput)
     {
         ok = false;
-        cout << "Error: The output of the displayLong method is incorrect" << endl;
+        cout << "Error: The output of the displayShort method is incorrect" << endl;
     }
 
     // Result of the test
@@ -179,7 +181,7 @@ void testPhysicalDamageMethod()
     // Result of the test
     if (ok)
     {
-        cout << "Error : PhysicalDamage method : OK" << endl;
+        cout << "PhysicalDamage method : OK" << endl;
     }
 }
 
@@ -222,6 +224,7 @@ void testMagicalDamage()
     }
 }
 
+
 void testCardEqualityOperator()
 {
     // Create the boolean for the result of the test
@@ -255,7 +258,6 @@ void testCardEqualityOperator()
         cout << "Equality operator : OK" << endl;
     }
 }
-
 
 void test_fill(){
     bool ok = true;
@@ -374,9 +376,7 @@ void testInitMethod()
     // Create the boolean for the result of the test
     bool ok = true;
 
-    // Create a player with a name and prestige
     Player player("Player 1", 3, {});
-
     // Test the init method
     player.init();
 
@@ -395,6 +395,22 @@ void testInitMethod()
     {
         cout << "Init method : OK" << endl;
     }
+
+}
+
+void testShuffleMethod(){
+    cout<<"testing the method shuffle :"<<endl;
+    // Create a player with a name and prestige
+    Player player("Player 1", 3, {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19});
+    player.shuffle();
+    vector<int> deck;
+    deck=player.getDeck();
+    cout<<endl;
+    for(int i : deck){
+        cout<<deck[i]<<", ";
+    }
+
+    cout<<endl;
 }
 
 void testEnoughCardsMethod()
@@ -570,6 +586,45 @@ void testPlaysACardMethod()
     {
         cout << "PLaysACard method : OK" << endl;
     }
+}
+
+void testletChooseMethod() {
+    // Create two players with empty decks
+    Player player1("player1", 25, {});
+    Player player2("player2", 25, {});
+
+    // Create the reserve of cards
+    Card C1("Sword",10,5,0);
+    Card C2("Shield",0,10,0);
+    Card C3("Staff",5,0,11);
+    Card C4("Dagger",5,0,5);
+    Card C5("Mace",10,0,0);
+    Card C6("Armor",0,15,0);
+    Card C7("Helmet",0,5,0);
+    Card C8("Bow",5,0,0);
+    Card C9("Arrows",7,0,0);
+    Card C10("Fireball",5,0,13);
+    Card C11("Lightning Bolt",8,0,18);
+    Card C12("Healing Potions",0,0,10);
+    Card C13("Mana Potions",0,0,15);
+    Card C14("Poisoned Dagger",8,0,0);
+    Card C15("Explosive Arrows",10,0,0);
+    Card C16("Giant Hammer",15,5,0);
+    Card C17("Wand of Telekinesis",5,0,16);
+    Card C18("Ring of Invisibility",0,1,35);
+    Card C19("Amulet of Regeneration",0,0,12);
+    Card C20("Tsurugi", 35, 5, 0);
+
+    vector<Card> reserve = {C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20};
+    cout<<"LetChoose method : ";
+        player1.letChoose(reserve);
+        player1.display();
+    cout<<endl;
+
+    cout<<"LetChooseDicho method : ";
+        player2.letChooseDicho(reserve);
+        player2.display();
+    cout<<endl;
 }
 
 // ################ Game ###############################################
@@ -778,4 +833,8 @@ void testIncrementOperator()
     {
         cout << "IncrementOperator : OK" << endl;
     }
+
+
 }
+
+

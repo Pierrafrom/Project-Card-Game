@@ -5,6 +5,10 @@
 #include "Player.h"
 #include "Card.h"
 #include <iostream>
+#include <vector>
+#include <cstdlib>  // for rand and srand
+#include <ctime>    // for time
+#include <string>
 
 using namespace std;
 
@@ -168,3 +172,59 @@ bool Player::operator==(const Player &player)
     return (_name==player._name && _prestige==player._prestige && this->compareDeck(player._deck));
 }
 
+//shuffles the targeted player's deck
+void Player::shuffle() {
+    srand(time(nullptr));
+    for(int & i : _deck){
+        int j = rand() % _deck.size();
+        swap(i, _deck[j]);
+    }
+}
+
+void Player::letChoose(const vector<Card> &reserve) {
+    string cardName;
+    int cpt = 0;
+    while ((cpt <= 20) and (cardName != "STOP")) {
+        cout<<"Enter in order every cards from the reserve you wish to add to your deck  ----- enter STOP to end the method if you want to add less than 20 cards -----  : "<< endl;
+        getline(cin, cardName);
+        cout << cardName << endl;
+        for (int i = 0; i < reserve.size(); i++) {
+            if (cardName == reserve[i].getName()) {
+                cout << "card found at index " << i << endl;
+                _deck.push_back(i);
+                cpt++;
+                break;
+            }
+        }
+    }
+}
+
+
+
+void Player::letChooseDicho(const vector<Card> &reserve) {
+    string cardName;//searched cardName
+    int start = 0;
+    int end = reserve.size()-1;
+    int middle;
+    int i = 0;
+    while ((i <= 20) and (cardName != "STOP")) {
+        cout<<"Enter in order every cards from the reserve you wish to add to your deck  ----- type STOP to end the method before adding 20 cards -----  : "<< endl;
+        getline(cin, cardName);
+        cout << cardName << endl;
+        while (start <= end) {  // Dichotomic search loop
+            middle = (start + end) / 2;
+            if (cardName == reserve[middle].getName()) {
+                cout << "card found at index " << middle << endl;
+                _deck.push_back(middle);
+                i++;
+                break;
+            }
+            else if (cardName < reserve[middle].getName()) {
+                end = middle - 1;
+            }
+            else {
+                start = middle + 1;
+            }
+        }
+    }
+}

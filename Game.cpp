@@ -3,6 +3,9 @@
 // and Samuel
 
 #include <vector>
+#include <fstream>
+#include <string>
+#include <sstream>
 #include "Game.h"
 #include "Player.h"
 #include "Card.h"
@@ -49,6 +52,22 @@ bool Game::ended(Player &winner) const
         }
     }
     return finish;
+}
+
+int Game::winner()
+{
+    Player winner;
+    if (this->ended(winner)){
+        if (winner==_player1)
+        {
+            return 1;
+        }
+        if (winner==_player2)
+        {
+            return -1;
+        }
+    }
+    return 0;
 }
 
 // plays one round of the game
@@ -120,4 +139,69 @@ Player Game::GetPlayerTwo()
 {
     return _player2;
 }
+
+//useful for tests only
+void Game::getReserve() {
+    for(int i = 0;i<_reserve.size();i++){
+        _reserve[i].displayShort();
+        cout<<endl;
+    }
+}
+
+bool compareCards(Card obj1, Card obj2)  {
+    return obj1.getName() < obj2.getName();
+}
+
+void Game::fillReserve(const string &filename) {
+    ifstream file;
+    file.open(filename);
+
+    if (!file.is_open()) {
+        cout << "Error while opening the file" << endl;
+    }
+    else {
+        string actual_line, object_name, name;
+        int attack, defense, magic;
+        int i = 0;
+        while (i<_reserve.size()){
+            getline(file, actual_line);
+            stringstream stream(actual_line);
+            string value;
+
+            getline(stream, value, ',');
+            istringstream(value) >> name;
+
+            getline(stream, value, ',');
+            istringstream(value) >> attack;
+
+            getline(stream, value, ',');
+            istringstream(value) >> defense;
+
+            getline(stream, value, ',');
+            istringstream(value) >> magic;
+
+
+            _reserve[i].changeName(name);
+            _reserve[i].changeAttack(attack);
+            _reserve[i].changeDefense(defense);
+            _reserve[i].changeMagic(magic);
+            i++;
+        }
+    }
+    sort(_reserve);
+    file.close();
+}
+
+void Game::sort(vector<Card> &reserve) {
+    for (int i = 0; i < reserve.size(); i++) {
+        for (int j = i+1; j < reserve.size(); j++) {
+            if (compareCards(reserve[j], reserve[i])) {
+                swap(reserve[i], reserve[j]);
+            }
+        }
+    }
+}
+
+
+
 

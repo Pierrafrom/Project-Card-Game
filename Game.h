@@ -96,7 +96,39 @@ public:
     Player GetPlayerOne();
 
     Player GetPlayerTwo();
+
+    int winner();
+
+    /*
+   *************************************************************************************************
+   *                                                                                               *
+   * Description                                                                                   *
+   * ===========                                                                                   *
+   * the reserve is filled with the information found in the file given as parameter               *
+   *                                                                                               *
+   *                                                                                               *
+   *                                                                                               *
+   * Input parameters                                                                              *
+   * ====================                                                                          *
+   * the name of the file we want to read on                                                       *
+   *                                                                                               *
+   *                                                                                               *
+   * Output parameters                                                                             *
+   * ====================                                                                          *
+   * nothing because it's a procedure                                                              *
+   *                                                                                               *
+   *************************************************************************************************
+   */
+    void fillReserve(const string &filename);
+
+    void getReserve();
+
+    void sort(vector<Card> &reserve);
+
+
+
 };
+bool compareCards(Card obj1, Card obj2);
 
 #endif //PROJECT_CARD_GAME_GAME_H
 

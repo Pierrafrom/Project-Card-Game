@@ -2,133 +2,329 @@
 // by Pierre
 // and Samuel
 
-#ifndef PROJECT_CARD_GAME_GAME_H
-#define PROJECT_CARD_GAME_GAME_H
+#ifndef PROJECT_CARD_GAME_CARD_H
+#define PROJECT_CARD_GAME_CARD_H
 
-#include <vector>
-#include "Card.h"
-#include "Player.h"
+#include <string>
 
-class Game
+using namespace std;
+
+//Declaration of class
+class Card
 {
-    vector<Card> _reserve;
-    Player _player1;
-    Player _player2;
+    string _name;
+    int _attack;
+    int _defense;
+    int _magic;
 
 public:
     /*
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
-    * Empty constructor with default values                                                         *
+    * Empty constructor                                                                             *
+    * Constructs a card named "bare hands" with 1 attack, 1 defense, 0 magic                        *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * Empty because we don't need any parameters to create default card                             *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * Empty because it's a constructeur                                                             *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
     *                                                                                               *
     *                                                                                               *
     *************************************************************************************************
     */
-    Game();
-
-    /*
-   *************************************************************************************************
-   *                                                                                               *
-   *                                                                                               *
-   * Description :                                                                                 *
-   * ===========                                                                                   *
-   * Game constructor                                                                              *
-   *                                                                                               *
-   *                                                                                               *
-   *************************************************************************************************
-   */
-    Game(const vector<Card> &reserve, Player &player1, Player &player2);
+    Card();
 
     /*
     *************************************************************************************************
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * returns if the game has ended or not, if it has, the player object taken as parameter         *
-    * takes the information of the winner between both player                                       *
-    *                                                                                               *
+    * Constructor on the basis of given information                                                 *
+    * Constructs a Card with given name, attack, defense and magic                                  *
     *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
-    * a Player object that is updated when the game ends                                            *
+    * A string for the name and 3 integers for attack, defense and magic                            *
     *                                                                                               *
     *                                                                                               *
     * Output parameters                                                                             *
     * ====================                                                                          *
-    * a boolean which indicates whether the game has ended or not                                   *
-    * if there is a draw, throw an exception                                                        *
+    * Empty because it's a constructor                                                              *
+    *                                                                                               *
     *                                                                                               *
     *                                                                                               *
     *                                                                                               *
     *                                                                                               *
     *************************************************************************************************
     */
-    bool ended(Player &winner) const;
+    Card(const string &name, int attack, int defense, int magic);
 
     /*
-   *************************************************************************************************
-   *                                                                                               *
-   *                                                                                               *
-   * Description :                                                                                 *
-   * ===========                                                                                   *
-   * one round ouf the game is done                                                                *
-   *                                                                                               *
-   *                                                                                               *
-   *************************************************************************************************
-   */
-    void operator++();
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * Short display of a Card                                                                       *
+    * Displays all data associated with the target Card                                             *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * Empty because we don't need any parameters to display a Card                                  *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * Empty because it's a procedure                                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    void displayShort() const;
 
-    bool IsGameFinished() const;
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * returns the physical damage taken                                                             *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns an integer                                                                            *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    int physicalDamage(const Card &card) const;
 
-    // The following methods are not in the instructions, but we had them because they are useful for tests
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * Long display of a Card                                                                        *
+    * Displays all data associated with the target Card                                             *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * Empty because we don't need any parameters to display a Card                                  *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * Empty because it's a procedure                                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    void displayLong() const;
 
-    bool compareReserve(const vector<Card> &vector) const;
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * returns the magical damage taken                                                              *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns an integer                                                                            *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    int magicalDamage(const Card &card) const;
 
-    void modifyPlayerTwoPrestige(int num);
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * Run the method physicalDamage(const Card &card)                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns an int                                                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    int operator+(const Card &card) const;
 
-    void clearPlayerTwoDeck();
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * Run the method magicalDamage(const Card &card)                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns an int                                                                                *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    int operator^(const Card &card) const;
 
-    bool compareGame(const Game &game);
-
-    Player GetPlayerOne();
-
-    Player GetPlayerTwo();
-
-    int winner();
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * True if the name, the attack, the magic and the defense of the target object and of the       *
+    * source object are the same.                                                                   *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * One object Card which is targeted and one object Card as a parameter                          *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * returns a boolean                                                                             *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+    bool operator==(const Card &card) const;
 
     /*
    *************************************************************************************************
    *                                                                                               *
    * Description                                                                                   *
    * ===========                                                                                   *
-   * the reserve is filled with the information found in the file given as parameter               *
+   * the targeted card is filled with the information of the line taken as input                   *
    *                                                                                               *
    *                                                                                               *
    *                                                                                               *
    * Input parameters                                                                              *
    * ====================                                                                          *
-   * the name of the file we want to read on                                                       *
+   * a string representing a line in the file                                                      *
    *                                                                                               *
    *                                                                                               *
    * Output parameters                                                                             *
    * ====================                                                                          *
-   * nothing because it's a procedure                                                              *
+   * fills _name, _attack, _defense and _magic with the information found on the line              *
    *                                                                                               *
    *************************************************************************************************
    */
-    void fillReserve(const string &filename);
+    void fill(const string & line);
 
-    void getReserve();
+    // The following methods are not in the instructions, but we had them because they are useful for tests
 
-    void sort(vector<Card> &reserve);
+    string getName() const;
+
+    int getAttack() const;
+
+    int getDefense() const;
+
+    int getMagic() const;
+
+    void changeName(const string &newname);
+
+    void changeAttack(int newatt);
+
+    void changeDefense(int newdef);
+
+    void changeMagic(int newmag);
+
+
 
 
 
 };
-bool compareCards(Card obj1, Card obj2);
 
-#endif //PROJECT_CARD_GAME_GAME_H
+    /*
+    *************************************************************************************************
+    *                                                                                               *
+    * Description                                                                                   *
+    * ===========                                                                                   *
+    * returns the short display of a card                                                           *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * An output stream and the card we want to display                                              *
+    *                                                                                               *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * Nothing because it's a procedure                                                              *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *                                                                                               *
+    *************************************************************************************************
+    */
+void operator<<(ostream &os, const Card &card);
 
+
+
+
+
+
+
+#endif //PROJECT_CARD_GAME_CARD_H

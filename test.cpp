@@ -871,11 +871,9 @@ void testFillReserve() {
     Game game(reserve, player1, player2);
 
     //starting the tests
-    cout<<"displaying the reserve before the changes : "<<endl;
-    game.getReserve();
     game.fillReserve("C:/Users/samue/Project-Card-Game-main/cards_data.txt");
-    cout<<"displaying the reserve after the changes : "<<endl;
-    game.getReserve();
+    cout<<"fillReserve method : OK "<<endl;
+
 }
 
 

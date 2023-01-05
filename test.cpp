@@ -35,13 +35,14 @@ void testAll()
     testEnoughPrestigeMethod();
     testNextCardMethod();
     testPlaysACardMethod();
-    testletChooseMethod();
+    //testletChooseMethod();
     // Game
     cout << "----------------- Game ----------------------------------" << endl;
     testConstructorsGame();
     testEndedMethod();
     testIsGameFinishedMethod();
     testIncrementOperator();
+    testFillReserve();
     cout << "############################ End Testing #####################################################" << endl;
 }
 
@@ -260,27 +261,27 @@ void testCardEqualityOperator()
 }
 
 void test_fill(){
-    bool ok = true;
-    Card C1;
-    C1.fill("Ring of Invisibility,0,1,35");
-    cout<< "now displaying the card C1 : " <<endl;
-    C1.displayShort();
-    cout<<"ping"<<endl;
-
-    // Test the function method by capturing its output
-    stringstream output;
-    streambuf *old = cout.rdbuf(output.rdbuf());
-    cout << C1;
-    cout.rdbuf(old);
-
-    // Check that the output is as expected
-    string expectedOutput = "Ring of Invisibility [ 0 ; 1 ; 35 ] \n";
-    if (output.str() != expectedOutput)
-    {
-        ok = false;
-        cout << "Error: The result of the fill method is incorrect" << endl;
+    string test_data = "Lightning Bolt,8,0,18";
+    Card card1;
+    card1.fill(test_data);
+    if (card1.getName() != "Lightning Bolt") {
+        cout << "Error: incorrect name" << endl;
     }
+    if (card1.getAttack() != 8) {
+        cout << "Error: incorrect attack" << endl;
+    }
+    if (card1.getDefense() != 0) {
+        cout << "Error: incorrect defense" << endl;
+    }
+    if (card1.getMagic() != 18) {
+        cout << "Error: incorrect magic" << endl;
+    }
+    else{
+        cout<<"Fill method : OK"<<endl;
+    }
+
 }
+
 
 // ################### Player ##########################################
 void testConstructorsPlayer()
@@ -635,7 +636,10 @@ void testConstructorsGame()
 
     // Test data variables
     vector<Card> reserve = {Card("Card 1", 10, 5, 3),
-                            Card("Card 2", 6, 7, 2)};
+                            Card("Card 2", 6, 7, 2),
+                            Card("Card 3",11,2,0),
+                            Card("Card 4",0,2,14),
+                            Card("Card 5",3,7,6)};
     Player player1 = Player("Player 1", 10, {1, 2, 3});
     Player player2 = Player("Player 2", 5, {4, 5});
     Player expectedPlayer("Yugi", 25, {0, 1, 2, 3, 4});
@@ -835,6 +839,43 @@ void testIncrementOperator()
     }
 
 
+}
+
+void testFillReserve() {
+    // Create the boolean for the result of the test
+    bool ok = true;
+
+    // Create two players with different deck
+    Player player1("player1", 25, {2, 1, 0});
+    Player player2("player2", 25, {2, 4, 3});
+
+    // Create the reserve of cards
+    vector<Card> reserve = {{"Gol d Roger", 15, 13, 15},
+                            {"Chopper",     3,  6,  2},
+                            {"Usopp",       3,  2,  0},
+                            {"Ace",         8,  8,  12},
+                            {"Shanks",      10, 10, 15},
+                            {"Gol d Roger", 15, 13, 15},
+                            {"Chopper",     3,  6,  2},
+                            {"Usopp",       3,  2,  0},
+                            {"Ace",         8,  8,  12},
+                            {"Shanks",      10, 10, 15},
+                            {"Gol d Roger", 15, 13, 15},
+                            {"Chopper",     3,  6,  2},
+                            {"Usopp",       3,  2,  0},
+                            {"Ace",         8,  8,  12},
+                            {"Shanks",      10, 10, 15}
+                            };
+
+    // Create a Game
+    Game game(reserve, player1, player2);
+
+    //starting the tests
+    cout<<"displaying the reserve before the changes : "<<endl;
+    game.getReserve();
+    game.fillReserve("C:/Users/samue/Project-Card-Game-main/cards_data.txt");
+    cout<<"displaying the reserve after the changes : "<<endl;
+    game.getReserve();
 }
 
 

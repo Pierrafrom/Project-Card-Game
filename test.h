@@ -30,5 +30,6 @@ void testEndedMethod();
 void testConstructorsGame();
 void testIsGameFinishedMethod();
 void testIncrementOperator();
+void testFillReserve();
 
 #endif //PROJECT_CARD_GAME_TESTS_H

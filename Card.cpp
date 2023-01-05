@@ -2,206 +2,225 @@
 // by Pierre
 // and Samuel
 
-#include <vector>
+#include "Card.h"
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
-#include "Game.h"
-#include "Player.h"
-#include "Card.h"
 
 using namespace std;
 
 // Empty constructor
-Game::Game()
+Card::Card()
 {
-    _reserve = {};
-    _player1;
-    _player2;
+    _name = "bare hands";
+    _attack = 1;
+    _defense = 1;
+    _magic = 0;
 }
 
 // Constructor
-Game::Game(const vector<Card> &reserve, Player &player1, Player &player2)
+Card::Card(const string &name, int attack, int defense, int magic)
 {
-    _reserve = reserve;
-    _player1 = player1;
-    _player2 = player2;
+    _name = name;
+    _attack = attack;
+    _defense = defense;
+    _magic = magic;
 }
 
-// Know if the game is finished and give the winner
-bool Game::ended(Player &winner) const
+// Display long
+void Card::displayLong() const
 {
-    bool finish = !_player1.enoughCards() || !_player2.enoughCards() || _player1.GetPrestige() <= 0
-                  || _player2.GetPrestige() <= 0;
-    if (finish)
+    cout << "****************************" << endl;
+    cout << "name: " << _name << endl;
+    cout << "attack: " << _attack << endl;
+    cout << "defense: " << _defense << endl;
+    cout << "magic: " << _magic << endl;
+    cout << "****************************" << endl;
+}
+
+// Display short
+void Card::displayShort() const
+{
+    cout << _name << " [ " << _attack << " ; " << _defense << " ; " << _magic << " ] " << endl;
+}
+
+// Physical damages
+int Card::physicalDamage(const Card &card) const
+{
+    if (_attack > card._attack)
     {
-        if (_player1.GetPrestige() > _player2.GetPrestige())
+        if (_attack < card._defense)
         {
-            winner = _player1;
+            return 0;
         }
         else
         {
-            if (_player1.GetPrestige() < _player2.GetPrestige())
+            return -(_attack - card._defense);
+        }
+    }
+    else
+    {
+        if (card._attack == _attack)
+        {
+            return 0;
+        }
+        else
+        {
+            if (card._attack > _defense)
             {
-                winner = _player2;
+                return (card._attack - _defense);
             }
             else
             {
-                throw out_of_range("Draw : no winner");
+                return 0;
             }
         }
     }
-    return finish;
 }
 
-int Game::winner()
+// Magical damages
+int Card::magicalDamage(const Card &card) const
 {
-    Player winner;
-    if (this->ended(winner)){
-        if (winner==_player1)
-        {
-            return 1;
-        }
-        if (winner==_player2)
-        {
-            return -1;
-        }
+    if (_magic == card._magic)
+    {
+        return 0;
     }
-    return 0;
+    else
+    {
+        return (card._magic - _magic);
+    }
 }
 
-// plays one round of the game
-void Game::operator++()
+// operator + for physicalDamage
+int Card::operator+(const Card &card) const
 {
-    _player1.playsACard(_player2, _reserve);
+    return physicalDamage(card);
 }
 
-// return true if the game is finished
-bool Game::IsGameFinished() const
+// operator ^ for magicalDamage
+int Card::operator^(const Card &card) const
 {
-    return !(_player1.enoughCards() && _player1.enoughPrestige() && _player2.enoughCards() && _player2.enoughPrestige());
+    return magicalDamage(card);
+}
+
+// operator << for display short
+void operator<<(ostream &os, const Card &card)
+{
+    card.displayShort();
+}
+
+
+
+//operator for equality
+bool Card::operator==(const Card &card) const
+{
+    return (this->_name==card._name && this->_attack==card._attack &&
+    this->_defense==card._defense && this->_magic==card._magic);
 }
 
 // The following methods are not in the instructions, but we had them because they are useful for tests
 
-// compare game
-bool Game::compareGame(const Game &game)
+// Get the Name
+string Card::getName() const
 {
-    return this->compareReserve(game._reserve) &&
-            ((_player1 == game._player1 && _player2 == game._player2) ||
-            (_player1 == game._player2 && _player2 == game._player1));
+    return _name;
 }
 
-// Modify the prestige of the player two
-void Game::modifyPlayerTwoPrestige(int num)
+// Get the attack
+int Card::getAttack() const
 {
-    _player2.modifyPrestige(num);
+    return _attack;
 }
 
-// Clear the deck of the player Two
-void Game::clearPlayerTwoDeck()
+// Get the defense
+int Card::getDefense() const
 {
-    _player2.clearDeck();
+    return _defense;
 }
 
-// Compare the reserve of card
-bool Game::compareReserve(const vector<Card> &vector) const
+// Get the magic
+int Card::getMagic() const
 {
-    bool ok = true;
-    int size = _reserve.size();
-    if (vector.size() != size)
-    {
-        ok = false;
-    }
-    if (ok)
-    {
-        int i = 0;
-        while (ok && i < size)
-        {
-            if (!(_reserve[i] == vector[i]))
-            {
-                ok = false;
-            }
-            i++;
-        }
-    }
-    return ok;
+    return _magic;
 }
 
-// Get the player 1
-Player Game::GetPlayerOne()
-{
-    return _player1;
-}
-
-// Get the player 2
-Player Game::GetPlayerTwo()
-{
-    return _player2;
-}
-
-//useful for tests only
-void Game::getReserve() {
-    for(int i = 0;i<_reserve.size();i++){
-        _reserve[i].displayShort();
-        cout<<endl;
-    }
-}
-
-bool compareCards(Card obj1, Card obj2)  {
-    return obj1.getName() < obj2.getName();
-}
-
-void Game::fillReserve(const string &filename) {
+void Card::fill(const string &line) {
+    // opening the file
     ifstream file;
-    file.open(filename);
+    file.open("C:/Users/samue/Project-Card-Game-main/cards_data.txt");
 
     if (!file.is_open()) {
         cout << "Error while opening the file" << endl;
     }
     else {
-        string actual_line, object_name, name;
-        int attack, defense, magic;
-        int i = 0;
-        while (i<_reserve.size()){
-            getline(file, actual_line);
-            stringstream stream(actual_line);
-            string value;
+        string actual_line;
 
-            getline(stream, value, ',');
-            istringstream(value) >> name;
+        while (getline(file, actual_line)) {
 
-            getline(stream, value, ',');
-            istringstream(value) >> attack;
-
-            getline(stream, value, ',');
-            istringstream(value) >> defense;
-
-            getline(stream, value, ',');
-            istringstream(value) >> magic;
+            if (actual_line == line) {
+                stringstream stream(line);
+                string value;
 
 
-            _reserve[i].changeName(name);
-            _reserve[i].changeAttack(attack);
-            _reserve[i].changeDefense(defense);
-            _reserve[i].changeMagic(magic);
-            i++;
+                /*
+
+                 * Reads the first value (name) in the string until the next coma and stocks the first value onside the string "value"
+                 * then uses "istringstream" in order to convert the string into an int then stocking it into the variable "_name".
+
+                */
+                getline(stream, _name, ',');
+
+
+                /*
+
+                 * Reads the second value (attack) in the string until the next coma and stocks the second value onside the string "value"
+                 * then uses "istringstream" in order to convert the string into an int then stocking it into the variable "_attack".
+
+                */
+                getline(stream, value, ',');
+                istringstream(value) >> _attack;
+
+
+                /*
+
+                 * Reads the third value (defense) in the string until the next coma and stocks the third value onside the string "value"
+                 * then uses "istringstream" in order to convert the string into an int then stocking it into the variable "_defense".
+
+                */
+                getline(stream, value, ',');
+                istringstream(value) >> _defense;
+
+                /*
+
+                 * Reads the fourth value (magic) in the string until the next coma and stocks the fourth value onside the string "value"
+                 * then uses "istringstream" in order to convert the string into an int then stocking it into the variable "_magic".
+
+                */
+                getline(stream, value, ',');
+                istringstream(value) >> _magic;
+
+            }
+
         }
     }
-    sort(_reserve);
     file.close();
 }
 
-void Game::sort(vector<Card> &reserve) {
-    for (int i = 0; i < reserve.size(); i++) {
-        for (int j = i+1; j < reserve.size(); j++) {
-            if (compareCards(reserve[j], reserve[i])) {
-                swap(reserve[i], reserve[j]);
-            }
-        }
-    }
+
+
+void Card::changeName(const string &newname) {
+    this->_name = newname;
 }
 
+void Card::changeAttack(int newatt) {
+    this->_attack = newatt;
+}
 
+void Card::changeDefense(int newdef) {
+    this->_defense = newdef;
+}
 
-
+void Card::changeMagic(int newmag) {
+    this->_magic = newmag;
+}

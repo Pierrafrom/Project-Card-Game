@@ -153,43 +153,51 @@ bool compareCards(Card obj1, Card obj2)  {
 }
 
 void Game::fillReserve(const string &filename) {
-    ifstream file;
-    file.open(filename);
+    ifstream file(filename);
 
     if (!file.is_open()) {
-        cout << "Error while opening the file" << endl;
+        throw out_of_range("Error while opening the file");
     }
-    else {
-        string actual_line, object_name, name;
-        int attack, defense, magic;
-        int i = 0;
-        while (i<_reserve.size()){
+    int i=0;
+    string actual_line, name;
+    int attack, defense, magic;
+    while(!file.eof()) {
+    //while (i<_reserve.size()) {
             getline(file, actual_line);
-            stringstream stream(actual_line);
+            Card c;
+            c.fill(actual_line);
+            _reserve.push_back(c);
+            /*
+            //stringstream stream(actual_line);
             string value;
 
-            getline(stream, value, ',');
+            getline(file, value, ',');
             istringstream(value) >> name;
 
-            getline(stream, value, ',');
+            getline(file, value, ',');
             istringstream(value) >> attack;
 
-            getline(stream, value, ',');
+            getline(file, value, ',');
             istringstream(value) >> defense;
 
-            getline(stream, value, ',');
+            getline(file, value);
             istringstream(value) >> magic;
 
+            file >> ws;
 
+            _reserve.push_back()
             _reserve[i].changeName(name);
             _reserve[i].changeAttack(attack);
             _reserve[i].changeDefense(defense);
             _reserve[i].changeMagic(magic);
+
             i++;
-        }
+    */
     }
+
     sort(_reserve);
     file.close();
+    _reserve.pop_back();
 }
 
 void Game::sort(vector<Card> &reserve) {

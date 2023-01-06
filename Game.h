@@ -68,6 +68,8 @@ public:
     */
     bool ended(Player &winner) const;
 
+    void playsARound();
+
     /*
    *************************************************************************************************
    *                                                                                               *
@@ -83,11 +85,15 @@ public:
 
     bool IsGameFinished() const;
 
+    int winner();
+
     // The following methods are not in the instructions, but we had them because they are useful for tests
 
     bool compareReserve(const vector<Card> &vector) const;
 
     void modifyPlayerTwoPrestige(int num);
+
+    void modifyPlayerOnePrestige(int num);
 
     void clearPlayerTwoDeck();
 
@@ -97,38 +103,25 @@ public:
 
     Player GetPlayerTwo();
 
-    int winner();
+    vector<Card> getReserve();
 
-    /*
-   *************************************************************************************************
-   *                                                                                               *
-   * Description                                                                                   *
-   * ===========                                                                                   *
-   * the reserve is filled with the information found in the file given as parameter               *
-   *                                                                                               *
-   *                                                                                               *
-   *                                                                                               *
-   * Input parameters                                                                              *
-   * ====================                                                                          *
-   * the name of the file we want to read on                                                       *
-   *                                                                                               *
-   *                                                                                               *
-   * Output parameters                                                                             *
-   * ====================                                                                          *
-   * nothing because it's a procedure                                                              *
-   *                                                                                               *
-   *************************************************************************************************
-   */
     void fillReserve(const string &filename);
 
-    void getReserve();
+    int getSizeReserve();
 
-    void sort(vector<Card> &reserve);
-
-
-
+    //~Game();
 };
-bool compareCards(Card obj1, Card obj2);
+
+vector<int> vectorOfRanks(const vector<Card> &reserve, Tri sortCriteria);
+
+void mergeCard(vector<int> &deck, int start1, int end1, int end2, Tri sortcriteria, const vector<Card> &reserve);
+
+void mergeSortBisCard(vector<int> &deck, int start, int end, Tri sortcriteria, const vector<Card> &reserve);
+
+void mergeSortCard(vector<int> &deck, int length, Tri sortCriteria, const vector<Card> &reserve);
+
+void sortVectorOfCard(vector<int> &deck, Tri sortCriteria, const vector<Card> &reserve);
+
+void sortReserve(vector<Card> &reserve);
 
 #endif //PROJECT_CARD_GAME_GAME_H
-

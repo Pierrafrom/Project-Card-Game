@@ -168,7 +168,7 @@ public :
     * Prints the next card if there is one if not throws an exception                               *
     *                                                                                               *
     *                                                                                               *
-    *                                                                                               *
+    *                                                                                               *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * a Card object                                                                                 *
@@ -194,7 +194,7 @@ public :
     * changes the prestige of the targeted player / player taken as parameter                       *
     * it depends on the stats of the players next card                                              *
     *                                                                                               *
-    *                                                                                               *
+    *                                                                                               *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * a player object                                                                               *
@@ -210,66 +210,23 @@ public :
     *                                                                                               *
     *************************************************************************************************
     */
-
     void playsACard(Player &player, const vector<Card> &reserve);
-
-    //need to add comments
 
     void shuffle();
 
-    /*
-    *************************************************************************************************
-    *                                                                                               *
-    * Description                                                                                   *
-    * ===========                                                                                   *
-    * the player chooses from the reserve given in argument which card he wants in his deck         *
-    *   -makes a sequential search                                                                  *
-    *                                                                                               *
-    *                                                                                               *
-    * Input parameters                                                                              *
-    * ====================                                                                          *
-    * the reserve of the game                                                                       *
-    *                                                                                               *
-    *                                                                                               *
-    * Output parameters                                                                             *
-    * ====================                                                                          *
-    * nothing it's a procedure                                                                      *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *************************************************************************************************
-    */
+    void fillDeckWithCriteria(const vector<Card> &reserve, Tri sortCriteria);
 
-    void letChoose(const vector<Card> &reserve);
+    void fillDeckManually(const vector<Card> &reserve, bool sort);
 
-    /*
-    *************************************************************************************************
-    *                                                                                               *
-    * Description                                                                                   *
-    * ===========                                                                                   *
-    * the player chooses from the reserve given in argument which card he wants in his deck         *
-    *   -makes a dichotomic search                                                                  *
-    *                                                                                               *
-    *                                                                                               *
-    * Input parameters                                                                              *
-    * ====================                                                                          *
-    * the reserve of the game                                                                       *
-    *                                                                                               *
-    *                                                                                               *
-    * Output parameters                                                                             *
-    * ====================                                                                          *
-    * nothing it's a procedure                                                                      *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *************************************************************************************************
-    */
+    void fillDeckRandom(const vector<Card> &reserve);
 
-    void letChooseDicho(const vector<Card> &reserve);
+    void fillDeck(const vector<Card> &reserve);
+
+    void sortDeckManually(const vector<Card> &reserve);
+
+    void chooseStrategy(const vector<Card> &reserve);
+
+    void setAIDeck(char difficulty, const vector<Card> &reserve);
 
     // The following methods are not in the instructions, but we had them because they are useful for tests
 
@@ -285,8 +242,14 @@ public :
 
     bool operator==(const Player &player);
 
-
+    //~Player();
 
 };
+
+bool isInVector(const string &name, const vector<string> &nameChosen, bool sort);
+
+bool isInReserve(const string &name, const vector<Card> &reserve, bool sort);
+
+void enterName(const vector<Card> &reserve, vector<string> &nameChosen, string &name, int ind, bool sort);
 
 #endif //PROJECT_CARD_GAME_PLAYER_H

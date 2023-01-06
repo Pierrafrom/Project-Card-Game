@@ -35,7 +35,7 @@ void testAll()
     testEnoughPrestigeMethod();
     testNextCardMethod();
     testPlaysACardMethod();
-    //testletChooseMethod();
+    testletChooseMethod();
     // Game
     cout << "----------------- Game ----------------------------------" << endl;
     testConstructorsGame();
@@ -850,30 +850,19 @@ void testFillReserve() {
     Player player2("player2", 25, {2, 4, 3});
 
     // Create the reserve of cards
-    vector<Card> reserve = {{"Gol d Roger", 15, 13, 15},
-                            {"Chopper",     3,  6,  2},
-                            {"Usopp",       3,  2,  0},
-                            {"Ace",         8,  8,  12},
-                            {"Shanks",      10, 10, 15},
-                            {"Gol d Roger", 15, 13, 15},
-                            {"Chopper",     3,  6,  2},
-                            {"Usopp",       3,  2,  0},
-                            {"Ace",         8,  8,  12},
-                            {"Shanks",      10, 10, 15},
-                            {"Gol d Roger", 15, 13, 15},
-                            {"Chopper",     3,  6,  2},
-                            {"Usopp",       3,  2,  0},
-                            {"Ace",         8,  8,  12},
-                            {"Shanks",      10, 10, 15}
-                            };
+    vector<Card> reserve = {};
 
     // Create a Game
     Game game(reserve, player1, player2);
 
     //starting the tests
-    game.fillReserve("C:/Users/samue/Project-Card-Game-main/cards_data.txt");
-    cout<<"fillReserve method : OK "<<endl;
-
+    game.fillReserve("cards_data.txt");
+    game.getReserve();
+    ok = game.getSizeReserve()>0;
+    if (ok)
+        cout<<"fillReserve : OK"<<endl;
+    else
+        cout<<"fillReserve : ERROR"<<endl;
 }
 
 

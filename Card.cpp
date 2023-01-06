@@ -148,10 +148,10 @@ int Card::getMagic() const
 void Card::fill(const string &line) {
     // opening the file
     ifstream file;
-    file.open("C:/Users/samue/Project-Card-Game-main/cards_data.txt");
+    file.open("cards_data.txt");
 
     if (!file.is_open()) {
-        cout << "Error while opening the file" << endl;
+        throw out_of_range("Error while opening the file, check if the path specified in Card.cpp is right");
     }
     else {
         string actual_line;

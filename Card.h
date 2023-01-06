@@ -9,6 +9,9 @@
 
 using namespace std;
 
+enum Tri {AMDDesc, AMDAsc, ADMDesc, ADMAsc, MADDesc, MADAsc, MDADesc, MDAAsc, DAMDesc, DAMAsc, DMADesc, DMAAsc,
+        ScoreDesc, ScoreAsc, ScoreWithCoefAMDDesc, ScoreWithCoefAMDAsc};
+
 //Declaration of class
 class Card
 {
@@ -249,27 +252,9 @@ public:
     */
     bool operator==(const Card &card) const;
 
-    /*
-   *************************************************************************************************
-   *                                                                                               *
-   * Description                                                                                   *
-   * ===========                                                                                   *
-   * the targeted card is filled with the information of the line taken as input                   *
-   *                                                                                               *
-   *                                                                                               *
-   *                                                                                               *
-   * Input parameters                                                                              *
-   * ====================                                                                          *
-   * a string representing a line in the file                                                      *
-   *                                                                                               *
-   *                                                                                               *
-   * Output parameters                                                                             *
-   * ====================                                                                          *
-   * fills _name, _attack, _defense and _magic with the information found on the line              *
-   *                                                                                               *
-   *************************************************************************************************
-   */
-    void fill(const string & line);
+    bool compareCard(const Card &card, Tri sortCriteria) const;
+
+    int getScore() const;
 
     // The following methods are not in the instructions, but we had them because they are useful for tests
 
@@ -281,50 +266,35 @@ public:
 
     int getMagic() const;
 
-    void changeName(const string &newname);
+    int getScoreAMD() const;
 
-    void changeAttack(int newatt);
-
-    void changeDefense(int newdef);
-
-    void changeMagic(int newmag);
-
-
-
-
-
+    void fill(const string &line);
 };
 
-    /*
-    *************************************************************************************************
-    *                                                                                               *
-    * Description                                                                                   *
-    * ===========                                                                                   *
-    * returns the short display of a card                                                           *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    * Input parameters                                                                              *
-    * ====================                                                                          *
-    * An output stream and the card we want to display                                              *
-    *                                                                                               *
-    *                                                                                               *
-    * Output parameters                                                                             *
-    * ====================                                                                          *
-    * Nothing because it's a procedure                                                              *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *                                                                                               *
-    *************************************************************************************************
-    */
+/*
+*************************************************************************************************
+*                                                                                               *
+* Description                                                                                   *
+* ===========                                                                                   *
+* returns the short display of a card                                                           *
+*                                                                                               *
+*                                                                                               *
+*                                                                                               *
+* Input parameters                                                                              *
+* ====================                                                                          *
+* An output stream and the card we want to display                                              *
+*                                                                                               *
+*                                                                                               *
+* Output parameters                                                                             *
+* ====================                                                                          *
+* Nothing because it's a procedure                                                              *
+*                                                                                               *
+*                                                                                               *
+*                                                                                               *
+*                                                                                               *
+*                                                                                               *
+*************************************************************************************************
+*/
 void operator<<(ostream &os, const Card &card);
-
-
-
-
-
-
 
 #endif //PROJECT_CARD_GAME_CARD_H

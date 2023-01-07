@@ -346,7 +346,7 @@ vector<int> vectorOfRanks(const vector<Card> &reserve, Tri sortCriteria);
 * @param end1 -> an integer representing the end index of the first half of the vector          *
 * @param end2 -> an integer representing the end index of the second half of the vector         *
 * @param sortcriteria -> a Tri type value representing the sorting criterion                    *
-* A constant reference to a vector of Card objects called "reserve"                             *
+* @param reserve -> a constant reference to a vector of Card objects called                     *
 *                                                                                               *
 *                                                                                               *
 * Output parameters                                                                             *
@@ -373,7 +373,7 @@ void mergeCard(vector<int> &deck, int start1, int end1, int end2, Tri sortcriter
 * @param start -> an integer representing the start index of the first half of the vector       *
 * @param end -> an integer representing the end index of the first half of the vector           *
 * @param sortcriteria -> a Tri type value representing the sorting criterion                    *
-* A constant reference to a vector of Card objects called "reserve"                             *
+* @param reserve -> a constant reference to a vector of Card objects called                     *
 *                                                                                               *
 *                                                                                               *
 * Output parameters                                                                             *
@@ -400,7 +400,7 @@ void mergeSortBisCard(vector<int> &deck, int start, int end, Tri sortcriteria, c
 * @param deck -> a reference to the vector of integers that will be sorted                      *
 * @param length -> an integer representing the length of the vector (length)                    *
 * @param sortcriteria -> a Tri type value representing the sorting criterion                    *
-* A constant reference to a vector of Card objects called "reserve"                             *
+* @param reserve -> a constant reference to a vector of Card objects called                     *
 *                                                                                               *
 *                                                                                               *
 * Output parameters                                                                             *
@@ -426,7 +426,7 @@ void mergeSortCard(vector<int> &deck, int length, Tri sortCriteria, const vector
 * ====================                                                                          *
 * @param deck -> a reference to the vector of integers that will be sorted                      *
 * @param sortcriteria -> a Tri type value representing the sorting criterion                    *
-* A constant reference to a vector of Card objects called "reserve"                             *
+* @param reserve -> a constant reference to a vector of Card objects called                     *
 *                                                                                               *
 *                                                                                               *
 * Output parameters                                                                             *

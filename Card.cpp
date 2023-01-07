@@ -97,12 +97,6 @@ int Card::operator^(const Card &card) const
     return magicalDamage(card);
 }
 
-// operator << for display short
-void operator<<(ostream &os, const Card &card)
-{
-    card.displayShort();
-}
-
 //operator for equality
 bool Card::operator==(const Card &card) const
 {
@@ -110,7 +104,13 @@ bool Card::operator==(const Card &card) const
             this->_defense == card._defense && this->_magic == card._magic);
 }
 
-// compare with Attack then with magic then with defense
+// operator << for display short
+void operator<<(ostream &os, const Card &card)
+{
+    card.displayShort();
+}
+
+// compare with sortCriteria
 bool Card::compareCard(const Card &card, Tri sortCriteria) const
 {
     // We don't have to put break because we return before reach it
@@ -643,7 +643,7 @@ void Card::fill(const string &line)
     file.close();
 }
 
-// The following methods are not in the instructions, but we had them because they are useful for tests
+// The following methods are not in the instructions, but we had them because they are useful many times
 
 // Get the Name
 string Card::getName() const

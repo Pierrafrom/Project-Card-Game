@@ -7,6 +7,11 @@
 To do this, open the file "Card.h". <br>
 Then define the path and the filename in the constants.
 ![Path](img/Path.PNG)
+2. Do you want to see the test of the functions or not? <br>
+If you want to see them, open main.cpp and define TEST like this: <br>
+![testOn](img/testOn.PNG) <br>
+If you don't want to see them just comment this line. <br>
+![testOff](img/testOff.PNG)
 
 ## 📃 Rules
 Here are the rules of the game : <br>

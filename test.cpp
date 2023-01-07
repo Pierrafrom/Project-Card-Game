@@ -11,7 +11,6 @@
 #include <sstream>
 #include <string>
 
-
 using namespace std;
 
 void testAll()
@@ -25,6 +24,7 @@ void testAll()
     testPhysicalDamageMethod();
     testMagicalDamage();
     testCardEqualityOperator();
+    testCompareCardMethod();
     // Player
     cout << "----------------- Player --------------------------------" << endl;
     testConstructorsPlayer();
@@ -261,6 +261,215 @@ void testCardEqualityOperator()
     if (ok)
     {
         cout << "Equality operator : OK" << endl;
+    }
+}
+
+void testCompareCardMethod()
+{
+    // Create the boolean for the result of the test
+    bool ok = true;
+
+    // Create some Card objects to use in the test
+    Card card1("Card 1", 10, 20, 30);
+    Card card2("Card 2", 15, 25, 35);
+    Card card3("Card 3", 20, 30, 40);
+
+    // Test the ScoreWithCoefAMDDesc sorting criteria
+    if (card1.compareCard(card2, ScoreWithCoefAMDDesc))
+    {
+        ok = false;
+        cout << "Error: ScoreWithCoefAMDDesc sort error" << endl;
+    }
+    if (!card3.compareCard(card2, ScoreWithCoefAMDDesc))
+    {
+        ok = false;
+        cout << "Error: ScoreWithCoefAMDDesc sort error" << endl;
+    }
+
+    // Test the ScoreWithCoefAMDAsc sorting criteria
+    if (!card1.compareCard(card2, ScoreWithCoefAMDAsc))
+    {
+        ok = false;
+        cout << "Error: ScoreWithCoefAMDAsc sort error" << endl;
+    }
+    if (card3.compareCard(card2, ScoreWithCoefAMDAsc))
+    {
+        ok = false;
+        cout << "Error: ScoreWithCoefAMDAsc sort error" << endl;
+    }
+
+    // Test the ScoreDesc sorting criteria
+    if (card1.compareCard(card2, ScoreDesc))
+    {
+        ok = false;
+        cout << "Error: ScoreDesc sort error" << endl;
+    }
+    if (!card3.compareCard(card2, ScoreDesc))
+    {
+        ok = false;
+        cout << "Error: ScoreDesc sort error" << endl;
+    }
+
+    // Test the ScoreAsc sorting criteria
+    if (!card1.compareCard(card2, ScoreAsc))
+    {
+        ok = false;
+        cout << "Error: ScoreAsc sort error" << endl;
+    }
+    if (card3.compareCard(card2, ScoreAsc))
+    {
+        ok = false;
+        cout << "Error: ScoreAsc sort error" << endl;
+    }
+
+    // Test the DMAAsc sorting criteria
+    if (!card1.compareCard(card2, DMAAsc))
+    {
+        ok = false;
+        cout << "Error: DMAAsc sort error" << endl;
+    }
+    if (card3.compareCard(card2, DMAAsc))
+    {
+        ok = false;
+        cout << "Error: DMAAsc sort error" << endl;
+    }
+
+    // Test the DMADesc sorting criteria
+    if (card1.compareCard(card2, DMADesc))
+    {
+        ok = false;
+        cout << "Error: DMADesc sort error" << endl;
+    }
+    if (!card3.compareCard(card2, DMADesc))
+    {
+        ok = false;
+        cout << "Error: DMADesc sort error" << endl;
+    }
+
+    // Test the DAMAsc sorting criteria
+    if (!card1.compareCard(card2, DAMAsc))
+    {
+        ok = false;
+        cout << "Error: DAMAsc sort error" << endl;
+    }
+    if (card3.compareCard(card2, DAMAsc))
+    {
+        ok = false;
+        cout << "Error: DAMAsc sort error" << endl;
+    }
+
+    // Test the DAMDesc sorting criteria
+    if (card1.compareCard(card2, DAMDesc))
+    {
+        ok = false;
+        cout << "Error: DAMDesc sort error" << endl;
+    }
+    if (!card3.compareCard(card2, DAMDesc))
+    {
+        ok = false;
+        cout << "Error: DAMDesc sort error" << endl;
+    }
+
+    // Test the MDAAsc sorting criteria
+    if (!card1.compareCard(card2, MDAAsc))
+    {
+        ok = false;
+        cout << "Error: MDAAsc sort error" << endl;
+    }
+    if (card3.compareCard(card2, MDAAsc))
+    {
+        ok = false;
+        cout << "Error: MDAAsc sort error" << endl;
+    }
+
+    // Test the MDADesc sorting criteria
+    if (card1.compareCard(card2, MDADesc))
+    {
+        ok = false;
+        cout << "Error: MDADesc sort error" << endl;
+    }
+    if (!card3.compareCard(card2, MDADesc))
+    {
+        ok = false;
+        cout << "Error: MDADesc sort error" << endl;
+    }
+
+    // Test the MADAsc sorting criteria
+    if (!card1.compareCard(card2, MADAsc))
+    {
+        ok = false;
+        cout << "Error: MADAsc sort error" << endl;
+    }
+    if (card3.compareCard(card2, MADAsc))
+    {
+        ok = false;
+        cout << "Error: MADAsc sort error" << endl;
+    }
+
+    // Test the MADDesc sorting criteria
+    if (card1.compareCard(card2, MADDesc))
+    {
+        ok = false;
+        cout << "Error: MADDesc sort error" << endl;
+    }
+    if (!card3.compareCard(card2, MADDesc))
+    {
+        ok = false;
+        cout << "Error: MADDesc sort error" << endl;
+    }
+
+    // Test the AMDAsc sorting criteria
+    if (!card1.compareCard(card2, AMDAsc))
+    {
+        ok = false;
+        cout << "Error: AMDAsc sort error" << endl;
+    }
+    if (card3.compareCard(card2, AMDAsc))
+    {
+        ok = false;
+        cout << "Error: AMDAsc sort error" << endl;
+    }
+
+    // Test the AMDDesc sorting criteria
+    if (card1.compareCard(card2, AMDDesc))
+    {
+        ok = false;
+        cout << "Error: AMDDesc sort error" << endl;
+    }
+    if (!card3.compareCard(card2, AMDDesc))
+    {
+        ok = false;
+        cout << "Error: AMDDesc sort error" << endl;
+    }
+
+    // Test the ADMDesc sorting criteria
+    if (card1.compareCard(card2, ADMDesc))
+    {
+        ok = false;
+        cout << "Error: ADMDesc sort error" << endl;
+    }
+    if (!card3.compareCard(card2, ADMDesc))
+    {
+        ok = false;
+        cout << "Error: ADMDesc sort error" << endl;
+    }
+
+    // Test the ADMAsc sorting criteria
+    if (!card1.compareCard(card2, ADMAsc))
+    {
+        ok = false;
+        cout << "Error: ADMAsc sort error" << endl;
+    }
+    if (card3.compareCard(card2, ADMAsc))
+    {
+        ok = false;
+        cout << "Error: ADMAsc sort error" << endl;
+    }
+
+    // Result of the test
+    if (ok)
+    {
+        cout << "CompareCard method : OK" << endl;
     }
 }
 
@@ -769,7 +978,8 @@ void testPlaysARoundMethod()
     {
         ok = false;
         cout << "Error: The player1's number of prestige is " << game.GetPlayerOne().GetPrestige()
-             << "and it should be equal to 8, the player2's number of prestige is " << game.GetPlayerTwo().GetPrestige()
+             << "and it should be equal to 8, the player2's number of prestige is "
+             << game.GetPlayerTwo().GetPrestige()
              <<
              "and it should be equal to 15" << endl;
     }
@@ -780,7 +990,8 @@ void testPlaysARoundMethod()
     {
         ok = false;
         cout << "Error: The player1's number of prestige is " << game.GetPlayerOne().GetPrestige()
-             << "and it should be equal to 8, the player2's number of prestige is " << game.GetPlayerTwo().GetPrestige()
+             << "and it should be equal to 8, the player2's number of prestige is "
+             << game.GetPlayerTwo().GetPrestige()
              <<
              "and it should be equal to 15" << endl;
     }
@@ -856,7 +1067,7 @@ void testWinnerMethod()
 void testFillReserve()
 {
     // Create the boolean for the result of the test
-    bool ok = true;
+    bool ok;
 
     // Create two players with different deck
     Player player1("player1", 25, {2, 1, 0});
@@ -871,7 +1082,7 @@ void testFillReserve()
     //starting the tests
     game.fillReserve("C:/Users/pierr/OneDrive/travail IUT/Project-Card-Game/cards_data.txt");
     game.getReserve();
-    ok = game.getSizeReserve() > 0;
+    ok = game.getSizeReserve() >= 20;
     if (ok)
     {
         cout << "fillReserve : OK" << endl;
@@ -976,8 +1187,9 @@ void testVectorOfRanks()
     vector<int> ranks = vectorOfRanks(reserve, AMDDesc);
     if (ranks != vector<int>({1, 3, 4, 2, 0}))
     {
-        cout << "Error: vectorOfRanks with sort by attack, then magic, then defense in descending order is incorrect"
-             << endl;
+        cout
+                << "Error: vectorOfRanks with sort by attack, then magic, then defense in descending order is incorrect"
+                << endl;
         ok = false;
     }
 

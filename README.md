@@ -41,3 +41,9 @@ Choose your strategy and your cards wisely knowing that : <br>
 6. The game start automaticly
 
 ## ‼️ If you have an error
+- If you have this error
+  ![error](img/fileOpen.PNG)
+  Be sure that you've entered the correct path and file name in the constants found on "Card.h"
+- If you have this error
+  ![error](img/data.PNG)
+  Check if you've download the correct file, you can find it on our github project page <a href="https://github.com/Pierrafrom/Project-Card-Game/blob/main/cards_data.txt" target="_blank">cards_data.txt</a> on our project page.

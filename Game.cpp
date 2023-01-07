@@ -54,7 +54,7 @@ bool Game::ended(Player &winner) const
 void Game::playsARound()
 {
     _player1.playsACard(_player2, _reserve);
-};
+}
 
 // plays one round of the game
 void Game::operator++()
@@ -209,24 +209,35 @@ void sortVectorOfCard(vector<int> &deck, Tri sortCriteria, const vector<Card> &r
 void sortReserve(vector<Card> &reserve)
 {
     sort(reserve.begin(), reserve.end(),
-         [] (const Card& c1, const Card& c2) { return c1.getName() < c2.getName(); });
+         [](const Card &c1, const Card &c2)
+         {
+             return c1.getName() < c2.getName();
+         });
 }
 
-void Game::fillReserve(const string &filename) {
+void Game::fillReserve(const string &filename)
+{
     ifstream file(filename);
 
-    if (!file.is_open()) {
+    if (!file.is_open())
+    {
         throw out_of_range("Error while opening the file");
     }
-    int i=0;
     string actual_line, name;
-    int attack, defense, magic;
-    while(!file.eof()) {
+    int numLines = 0;
+    while (!file.eof())
+    {
         //while (i<_reserve.size()) {
         getline(file, actual_line);
         Card c;
         c.fill(actual_line);
         _reserve.push_back(c);
+        numLines++;
+    }
+
+    if (numLines < 20)
+    {
+        throw out_of_range("We don't have enough data to start the game");
     }
 
     sortReserve(_reserve);
@@ -234,7 +245,7 @@ void Game::fillReserve(const string &filename) {
     _reserve.pop_back();
 }
 
-// The following methods are not in the instructions, but we had them because they are useful for tests
+// The following methods are not in the instructions, but we had them because they are useful many times
 
 // compare game
 bool Game::compareGame(const Game &game)
@@ -299,7 +310,7 @@ Player Game::GetPlayerTwo()
 }
 
 // Get the reserve of the game
-vector <Card> Game::getReserve()
+vector<Card> Game::getReserve()
 {
     return _reserve;
 }
@@ -309,6 +320,3 @@ int Game::getSizeReserve()
 {
     return _reserve.size();
 }
-
-// destructor
-//Game::~Game()=default;

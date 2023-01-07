@@ -24,8 +24,11 @@ const string FILENAME = "cards_data.txt";
  * more importance to the attack attribute and less importance to the
  * defense attribute.
  */
-enum Tri {AMDDesc, AMDAsc, ADMDesc, ADMAsc, MADDesc, MADAsc, MDADesc, MDAAsc, DAMDesc, DAMAsc, DMADesc, DMAAsc,
-        ScoreDesc, ScoreAsc, ScoreWithCoefAMDDesc, ScoreWithCoefAMDAsc};
+enum Tri
+{
+    AMDDesc, AMDAsc, ADMDesc, ADMAsc, MADDesc, MADAsc, MDADesc, MDAAsc, DAMDesc, DAMAsc, DMADesc, DMAAsc,
+    ScoreDesc, ScoreAsc, ScoreWithCoefAMDDesc, ScoreWithCoefAMDAsc
+};
 
 //Declaration of the Card class
 class Card
@@ -406,7 +409,7 @@ public:
     *                                                                                               *
     * Output parameters                                                                             *
     * ====================                                                                          *
-    * @return The output stream with the short version of the Card object displayed to it.          *                                                                              *
+    * @return The output stream with the short version of the Card object displayed to it.          *
     *                                                                                               *
     *************************************************************************************************
     */

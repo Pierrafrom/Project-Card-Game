@@ -10,7 +10,6 @@
 #include "Player.h"
 #include <string>
 
-
 //#define TEST ON
 
 using namespace std;
@@ -41,13 +40,9 @@ int main()
         // Now, we have a reserve initialised
         vector<Card> reserve = tempGame.getReserve();
 
-        // Now, we destruct temporary objects
-        //tempP1.~Player();
-        //tempP2.~Player();
-        //tempGame.~Game();
-
         // Variable Declaration
         char answer;
+        string answer1;
         string namePlayer1, namePlayer2;
 
         do
@@ -63,27 +58,32 @@ int main()
                 cin >> answer;
             }
 
-            cout << "Here are the rules of the game : \n"
-                    "the game is basically player versus player game but you can be alone and face a bot,\n"
-                    "each player has a pile of 20 cards wich they took from the same reserve.\n"
-                    "Each card has a name, an attack, a defense and a magic value, your goal \n"
-                    "will be to reduce the prestige poins of your ennemy and to protect yours.\n"
-                    "The winner will be the first to take down the ennemy or the last to have any cards in their deck !\n"
-                    "Choose your strategy and your cards wisely knowing that :\n"
-                    "         - the player having the biggest amount of attack (physical damages) will decrease the prestige of his\n"
-                    "           opponent by the difference between his attack value and the defense value of the other player\n"
-                    "         - if both of the players have the same amount of attack, no harm to any players prestige will be caused\n"
-                    "         - If the defender has more defense than the attack value of the other player, the defender\n"
-                    "           does not gain any prestige points\n"
-                    "         - The player having the biggest amount of magical power will reduce\n"
-                    "           the prestige of his ennemy by the difference of the magical power of value of the two player"
-            <<endl;
+            cout << "Here are the rules of the game :\n"
+                    "- The game is basically player versus player game but you can be alone and face a bot.\n"
+                    "- Each player has a pile of 20 cards which they took from the same reserve.\n"
+                    "- Each card has a name, an attack, a defense and a magic value.\n"
+                    "- Your goal is to reduce the prestige poins of your enemy and to protect yours.\n"
+                    "- Each player sorts his deck according to his strategy, then plays the card on top of his deck each turn.\n"
+                 << endl;
+
+            cout << "The winner will be the first to take down the enemy or the the one who has the most prestige "
+                    "points when one of the two players has no more cards left !" << endl << endl;
+
+            cout << "Choose your strategy and your cards wisely knowing that :\n"
+                    "- The player having the biggest amount of attack (physical damages) will decrease the prestige of "
+                    "his opponent by the difference between his attack value and the defense value of the other player\n"
+                    "- If both of the players have the same amount of attack, no harm to any players prestige will be caused\n"
+                    "- If the defender has more defense than the attack value of the other player, the defender does "
+                    "not gain any prestige points\n"
+                    "- The player having the biggest amount of magical power will reduce the prestige of his enemy by "
+                    "the difference of the magical power of value of the two player " << endl << endl;
+
             if (answer == '1')
             {
                 // Game for 1 player
 
                 // Create the player 1
-                cout << "Enter your name :" << endl;
+                cout << "Enter your name : ";
                 cin >> namePlayer1;
                 Player Player1(namePlayer1, 25, {});
                 Player1.init(); // We fill his deck, we will modify it later;
@@ -116,37 +116,37 @@ int main()
                     cin >> answer;
                 }
                 // We create the deck of the AI with the difficulty chosen
-                Player2.setAIDeck(answer,reserve);
+                Player2.setAIDeck(answer, reserve);
 
                 // Create the game with the reserve and the two players
                 Game game(reserve, Player1, Player2);
 
                 // We start the game, and we continue as long as one of the two players has not lost
                 int i = 1;
-                while(!game.IsGameFinished())
+                while (!game.IsGameFinished())
                 {
                     cout << "#################### Round " << i << " #####################" << endl;
                     // Here we use the display long because we print only two cards
                     cout << namePlayer1 << " has " << game.GetPlayerOne().GetPrestige()
-                    << " prestiges left and plays the card : " << endl;
-                    reserve[game.GetPlayerOne().getDeck()[game.GetPlayerOne().getDeck().size()-1]].displayLong();
+                         << " prestiges left and plays the card : " << endl;
+                    reserve[game.GetPlayerOne().getDeck()[game.GetPlayerOne().getDeck().size() - 1]].displayLong();
 
                     cout << namePlayer2 << " has " << game.GetPlayerTwo().GetPrestige()
                          << " prestiges left and plays the card : " << endl;
-                    reserve[game.GetPlayerTwo().getDeck()[game.GetPlayerTwo().getDeck().size()-1]].displayLong();
+                    reserve[game.GetPlayerTwo().getDeck()[game.GetPlayerTwo().getDeck().size() - 1]].displayLong();
                     cout << endl;
                     ++game;
                     i++;
                 }
 
                 // Now, we print the name of the winner
-                if (game.winner()==1)
+                if (game.winner() == 1)
                 {
                     cout << namePlayer1 << " is the winner. \nCongratulations!!!" << endl;
                 }
                 else
                 {
-                    if (game.winner()==-1)
+                    if (game.winner() == -1)
                     {
                         cout << namePlayer2 << " is the winner. \nCongratulations!!!" << endl;
                     }
@@ -161,13 +161,13 @@ int main()
                 // Game for 2 players
 
                 // Create player 1
-                cout << "Enter the name of the player 1 :" << endl;
+                cout << "Enter the name of the player 1 : ";
                 cin >> namePlayer1;
                 Player Player1(namePlayer1, 25, {});
                 Player1.init(); // We fill his deck, we will modify it later;
 
                 // Create player 2
-                cout << "Enter the name of the player 2 :" << endl;
+                cout << "Enter the name of the player 2 : ";
                 cin >> namePlayer2;
                 if (namePlayer1 == namePlayer2) // the name of the two players should be different
                 {
@@ -191,29 +191,29 @@ int main()
 
                 // We start the game, and we continue as long as one of the two players has not lost
                 int i = 1;
-                while(!game.IsGameFinished())
+                while (!game.IsGameFinished())
                 {
                     cout << "#################### Round " << i << " #####################" << endl;
                     // Here we use the display long because we print only two cards
                     cout << namePlayer1 << " has " << game.GetPlayerOne().GetPrestige()
                          << " prestiges left and plays the card : " << endl;
-                    reserve[game.GetPlayerOne().getDeck()[game.GetPlayerOne().getDeck().size()-1]].displayLong();
+                    reserve[game.GetPlayerOne().getDeck()[game.GetPlayerOne().getDeck().size() - 1]].displayLong();
 
                     cout << namePlayer2 << " has " << game.GetPlayerTwo().GetPrestige()
                          << " prestiges left and plays the card : " << endl;
-                    reserve[game.GetPlayerTwo().getDeck()[game.GetPlayerTwo().getDeck().size()-1]].displayLong();
+                    reserve[game.GetPlayerTwo().getDeck()[game.GetPlayerTwo().getDeck().size() - 1]].displayLong();
                     cout << endl;
                     ++game;
                     i++;
                 }
                 // Now, we print the name of the winner
-                if (game.winner()==1)
+                if (game.winner() == 1)
                 {
                     cout << namePlayer1 << " is the winner. \nCongratulations!!!" << endl;
                 }
                 else
                 {
-                    if (game.winner()==-1)
+                    if (game.winner() == -1)
                     {
                         cout << namePlayer2 << " is the winner. \nCongratulations!!!" << endl;
                     }
@@ -226,22 +226,51 @@ int main()
 
             // Play another game or not
             cout << "Do you want to play again? (Y or N)" << endl;
-            cin >> answer;
-            answer = tolower(answer);
-            while (answer != 'y' && answer != 'n')
+            cin >> answer1;
+            unsigned int sizeAns = answer1.size();
+            for (int i = 0; i < sizeAns; ++i)
+            {
+                answer1[i] = tolower(answer1[i]);
+            }
+            while (answer1 != "y" && answer1 != "n" && answer1 != "easteregg")
             {
                 cout << "Please, enter a correct value (Y or N) :" << endl;
                 cin >> answer;
-                answer = tolower(answer);
+                sizeAns = answer1.size();
+                for (int i = 0; i < sizeAns; ++i)
+                {
+                    answer1[i] = tolower(answer1[i]);
+                }
             }
 
-        } while (answer == 'y');
+        } while (answer1 == "y");
+        if (answer1 == "easteregg")
+        {
+            cout << " ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                    "⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆\n"
+                    "⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿\n"
+                    "⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀\n"
+                    "⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\n"
+                    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉" << endl;
+        }
     }
-    catch (out_of_range & e)
+    catch (out_of_range &e)
     {
-        // We can have two different exception
+        // We can have 3 different exception
         // 1) the file couldn't be opened
-        // 2) a player doesn't have enough cards when he is supposed to play
+        // 2) there is less than 20 cards in the reserve
+        // 3) a player doesn't have enough cards when he is supposed to play
+        // The third exception was in the instructions, but we can't reach it
+        // because the second exception always appear before
         cerr << "Out of range exception : " << e.what() << endl;
     }
     return 0;

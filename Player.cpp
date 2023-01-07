@@ -19,13 +19,6 @@ Player::Player()
 {
     _name = "Yugi";
     _prestige = 25;
-    /*
-    Card righthand("RightHand", 1, 0, 0);
-    Card lefthand("LeftHand", 0, 1, 0);
-    Card head("Head", 1, -2, 0);
-    Card mouth("Mouth", 1, -1, 2);
-    Card knee("Knee", 2, 0, 0);
-     */
     _deck = {0, 1, 2, 3, 4};
 }
 
@@ -253,7 +246,6 @@ void enterName(const vector<Card> &reserve, vector<string> &nameChosen, string &
 {
     bool ok1 = false, ok2 = false;
     cout << "Enter the name of your Card number " << ind << endl;
-    //getline(cin, name);
     cin >> name;
 
     // check if the card have already been entered
@@ -277,7 +269,6 @@ void enterName(const vector<Card> &reserve, vector<string> &nameChosen, string &
         ok2 = isInReserve(name, reserve, sort);
     }
     nameChosen.push_back(name);
-
 }
 
 // Fill the deck manually
@@ -657,17 +648,17 @@ void Player::setAIDeck(char difficulty, const vector<Card> &reserve)
                     this->fillDeckWithCriteria(reserve, MDADesc);
             }
         }
-        // Set the difficulty for a hard AI
+            // Set the difficulty for a hard AI
         else
         {
             switch (strategy)
             {
                 case 1:
-                    this->fillDeckWithCriteria(reserve,AMDDesc);
+                    this->fillDeckWithCriteria(reserve, AMDDesc);
                     sortVectorOfCard(_deck, ScoreWithCoefAMDDesc, reserve);
                     break;
                 case 2:
-                   this->fillDeckWithCriteria(reserve, ScoreWithCoefAMDDesc);
+                    this->fillDeckWithCriteria(reserve, ScoreWithCoefAMDDesc);
                     break;
                 default:
                     this->fillDeckWithCriteria(reserve, AMDDesc);
@@ -687,7 +678,7 @@ void Player::setAIDeck(char difficulty, const vector<Card> &reserve)
     }
 }
 
-// The following methods are not in the instructions, but we had them because they are useful for tests
+// The following methods are not in the instructions, but we had them because they are useful many times
 
 // Modify the prestige number of a player
 void Player::modifyPrestige(int num)
@@ -705,7 +696,7 @@ void Player::clearDeck()
 bool Player::compareDeck(const vector<int> &vector)
 {
     bool ok = true;
-    int size = _deck.size();
+    unsigned int size = _deck.size();
     if (vector.size() != size)
     {
         ok = false;
@@ -742,6 +733,3 @@ bool Player::operator==(const Player &player)
 {
     return (_name == player._name && _prestige == player._prestige && this->compareDeck(player._deck));
 }
-
-// destructor
-//Player::~Player();

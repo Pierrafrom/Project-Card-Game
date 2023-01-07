@@ -35,7 +35,8 @@ int main()
         Player tempP2;
         Game tempGame({}, tempP1, tempP2);
 
-        tempGame.fillReserve(R"(C:\Users\pierr\OneDrive\travail IUT\Project-Card-Game\cards_data.txt)");
+        // Here we fill the reserve with the full path defined with constant in the Card.h file
+        tempGame.fillReserve((PATH + FILENAME));
 
         // Now, we have a reserve initialised
         vector<Card> reserve = tempGame.getReserve();
@@ -108,16 +109,21 @@ int main()
                 Game game(reserve, Player1, Player2);
 
                 // We start the game, and we continue as long as one of the two players has not lost
+                int i = 1;
                 while(!game.IsGameFinished())
                 {
+                    cout << "#################### Round " << i << " #####################" << endl;
+                    // Here we use the display long because we print only two cards
                     cout << namePlayer1 << " has " << game.GetPlayerOne().GetPrestige()
-                    << " prestiges left and plays the card : "
-                    << reserve[game.GetPlayerOne().getDeck()[game.GetPlayerOne().getDeck().size()-1]];
+                    << " prestiges left and plays the card : " << endl;
+                    reserve[game.GetPlayerOne().getDeck()[game.GetPlayerOne().getDeck().size()-1]].displayLong();
+
                     cout << namePlayer2 << " has " << game.GetPlayerTwo().GetPrestige()
-                         << " prestiges left and plays the card : "
-                         << reserve[game.GetPlayerTwo().getDeck()[game.GetPlayerTwo().getDeck().size()-1]];
+                         << " prestiges left and plays the card : " << endl;
+                    reserve[game.GetPlayerTwo().getDeck()[game.GetPlayerTwo().getDeck().size()-1]].displayLong();
                     cout << endl;
                     ++game;
+                    i++;
                 }
 
                 // Now, we print the name of the winner
@@ -171,16 +177,21 @@ int main()
                 Game game(reserve, Player1, Player2);
 
                 // We start the game, and we continue as long as one of the two players has not lost
+                int i = 1;
                 while(!game.IsGameFinished())
                 {
+                    cout << "#################### Round " << i << " #####################" << endl;
+                    // Here we use the display long because we print only two cards
                     cout << namePlayer1 << " has " << game.GetPlayerOne().GetPrestige()
-                         << " prestiges left and plays the card : "
-                         << reserve[game.GetPlayerOne().getDeck()[game.GetPlayerOne().getDeck().size()-1]];
+                         << " prestiges left and plays the card : " << endl;
+                    reserve[game.GetPlayerOne().getDeck()[game.GetPlayerOne().getDeck().size()-1]].displayLong();
+
                     cout << namePlayer2 << " has " << game.GetPlayerTwo().GetPrestige()
-                         << " prestiges left and plays the card : "
-                         << reserve[game.GetPlayerTwo().getDeck()[game.GetPlayerTwo().getDeck().size()-1]];
+                         << " prestiges left and plays the card : " << endl;
+                    reserve[game.GetPlayerTwo().getDeck()[game.GetPlayerTwo().getDeck().size()-1]].displayLong();
                     cout << endl;
                     ++game;
+                    i++;
                 }
                 // Now, we print the name of the winner
                 if (game.winner()==1)

@@ -34,7 +34,7 @@ Choose your strategy and your cards wisely knowing that : <br>
 
 ## 🎮 How to play
 1. Choose the number of player 
-2. Enter your nam
+2. Enter your name
 3. Choose how do you want fill your deck
 4. Choose how do you want to sort your deck
 5. If you play alone, choose the difficulty of the AI

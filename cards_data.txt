@@ -12,7 +12,7 @@ Chokuto,10,2,3
 Kodachi,8,1,2
 Bo,7,2,3
 Jo,9,1,2
-Kwan Dao,12,3,4
+Barbican,8,3,4
 Bokken,8,2,3
 Nunchaku,9,1,2
 Sai,7,1,2

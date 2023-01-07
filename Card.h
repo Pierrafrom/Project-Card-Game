@@ -71,7 +71,7 @@ public:
     *                                                                                               *
     * Output parameters                                                                             *
     * ====================                                                                          *
-    * @return A new Card object with default values for its attributes.                             *
+    * @return A new Card object with given values for its attributes.                               *
     *                                                                                               *
     *************************************************************************************************
     */

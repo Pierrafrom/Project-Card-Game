@@ -9,6 +9,10 @@
 
 using namespace std;
 
+// Define here the path and the name of the file which contain the data for the reserve
+const string PATH = R"(C:\Users\pierr\OneDrive\travail IUT\Project-Card-Game\)";
+const string FILENAME = "cards_data.txt";
+
 /**
  * The Tri enum type appears to be a list of different sorting orders that can
  * be applied to the cards. The acronym letters in the name of each enum value

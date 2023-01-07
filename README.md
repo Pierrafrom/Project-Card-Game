@@ -33,4 +33,11 @@ Choose your strategy and your cards wisely knowing that : <br>
   the prestige of his ennemy by the difference of the magical power of value of the two player <br>
 
 ## 🎮 How to play
+1. Choose the number of player 
+2. Enter your nam
+3. Choose how do you want fill your deck
+4. Choose how do you want to sort your deck
+5. If you play alone, choose the difficulty of the AI
+6. The game start automaticly
 
+## ‼️ If you have an error

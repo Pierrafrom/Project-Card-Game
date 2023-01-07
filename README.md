@@ -46,4 +46,4 @@ Choose your strategy and your cards wisely knowing that : <br>
   Be sure that you've entered the correct path and file name in the constants found on "Card.h"
 - If you encounter this error :<br>
   ![error](img/data.PNG)<br>
-  Check if you've download the correct data file, you can find it on our github project page <a href="https://github.com/Pierrafrom/Project-Card-Game/blob/main/cards_data.txt" target="_blank">cards_data.txt</a> on our project page.
+  Check if you've download the correct data file, you can find it on our github project page <a href="https://github.com/Pierrafrom/Project-Card-Game/blob/main/cards_data.txt" target="_blank">cards_data.txt</a> on our project page. In case you want to add your own cards and data just keep in mind that the names of the cards cannot comport a space and that the minimum of cards in the file is 20 in order to run the game without bugs.

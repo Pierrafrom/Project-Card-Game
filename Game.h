@@ -128,7 +128,7 @@ public:
     */
     bool IsGameFinished() const;
 
-    /*
+    /**
     *************************************************************************************************
     *                                                                                               *
     * Description                                                                                   *
@@ -145,9 +145,7 @@ public:
     *                                                                                               *
     * Output parameters                                                                             *
     * ====================                                                                          *
-    * returns 1 if player 1 won the game and -1 if player 2 won                                     *
-    *                                                                                               *
-    *                                                                                               *
+    * @return 1 if player 1 won the game and -1 if player 2 won and 0 if it's a draw                *
     *                                                                                               *
     *************************************************************************************************
     */
@@ -194,14 +192,20 @@ public:
     */
     void modifyPlayerOnePrestige(int num);
 
-    /*
+    /**
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
-    * clears player 2 deck                                                                          *
+    * Clear the player's two deck                                                                   *
     *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * (none)                                                                                        *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * (none)                                                                                        *
     *                                                                                               *
     *************************************************************************************************
     */
@@ -214,56 +218,70 @@ public:
     * ===========                                                                                   *
     * compares the actual game with the game taken as parameter                                     *
     *                                                                                               *
-    *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * @param game an object of Game different from the actual game                                  *
     *                                                                                               *
-    *                                                                                               *
     * Output parameters                                                                             *
     * ====================                                                                          *
-    * returns a boolean, 1 if the games are the same and 0 if they ain't                            *
-    *                                                                                               *
-    *                                                                                               *
+    * @returns a boolean, true if the games are the same and false if they ain't                    *
     *                                                                                               *
     *************************************************************************************************
     */
     bool compareGame(const Game &game);
 
-    /*
+    /**
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
-    * returns the object of Player named player1                                                    *
+    * Get the first player of the game.                                                             *
     *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * (none)                                                                                        *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * @return The first player of the game.                                                         *
     *                                                                                               *
     *************************************************************************************************
     */
     Player GetPlayerOne();
 
-    /*
+    /**
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
-    * returns the object of Player named player1                                                    *
+    * Get the second player of the game.                                                            *
     *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * (none)                                                                                        *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * @return The second player of the game.                                                        *
     *                                                                                               *
     *************************************************************************************************
     */
     Player GetPlayerTwo();
 
-    /*
+    /**
     *************************************************************************************************
     *                                                                                               *
-    *                                                                                               *
-    * Description :                                                                                 *
+    * Description                                                                                   *
     * ===========                                                                                   *
-    * returns the vector of Card named reserve                                                      *
+    * Get the reserve of cards for the game.                                                        *
     *                                                                                               *
+    * Input parameters                                                                              *
+    * ====================                                                                          *
+    * (none)                                                                                        *
+    *                                                                                               *
+    * Output parameters                                                                             *
+    * ====================                                                                          *
+    * @return A vector of Card objects representing the reserve of cards for the game.             *
     *                                                                                               *
     *************************************************************************************************
     */
@@ -274,19 +292,17 @@ public:
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * fills the game's reserve with the data found in @param filename                               *
+    * Reads the card data from a file and stores them in the reserve of the game object.            *
+    * The cards are sorted in alphabetical order based on their name.                               *
     *                                                                                               *
     *                                                                                               *
     * Input parameters                                                                              *
-    * ====================                                                                          *
-    * @param filename wich is the file name  ¯\_(¨_¨)_/¯                                            *
-    *                                            | |                                                *
-    *                                           /   \                                               *
+    * ====================                    ¯\_(¨_¨)_/¯                                           *
+    * @param filename which is the file name      | |                                               *
+    *                                            /   \                                              *
     * Output parameters                                                                             *
     * ====================                                                                          *
-    * nothing is directly returned of displayed but the targeted game's reserve                     *
-    * is filled and sorted by alphabetical order                                                    *
-    *                                                                                               *
+    * @throws out_of_range If the file cannot be opened                                             *
     *                                                                                               *
     *************************************************************************************************
     **/
@@ -297,35 +313,40 @@ public:
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * compares the actual game with the game taken as parameter                                     *
-    *                                                                                               *
+    * Get the size of the game's reserve                                                            *
     *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * no input parameters                                                                           *
     *                                                                                               *
-    *                                                                                               *
     * Output parameters                                                                             *
     * ====================                                                                          *
-    * returns an int representing the reserve's size                                                *
-    *                                                                                               *
-    *                                                                                               *
+    * @return an int representing the reserve's size                                                *
     *                                                                                               *
     *************************************************************************************************
     */
     int getSizeReserve();
 
-    //~Game();
 };
 
 /**
 *************************************************************************************************
 *                                                                                               *
-*                                                                                               *
 * Description :                                                                                 *
 * ============                                                                                  *
-* gets the vector of ranks from @param reserve a vector of Card                                 *
-* with @param sortCriteria a chosen sort criteria                                               *
+* This function takes a vector of cards and a sorting criteria, and returns a vector of ranks   *
+* corresponding to the sorted order of the cards.                                               *
+* The rank of a card is its position in the original unsorted vector of cards.                  *
+*                                                                                               *
+* Input parameters                                                                              *
+* ====================                                                                          *
+* @param reserve The vector of cards to be sorted and ranked                                    *
+* @param sortCriteria The sorting criteria to be used. This is a function that takes two Card   *
+* objects and returns a boolean indicating which one should come first in the sorted vector.    *
+*                                                                                               *
+* Output parameters                                                                             *
+* ====================                                                                          *
+* @return A vector of integers representing the ranks of the cards in the sorted order.         *
 *                                                                                               *
 *************************************************************************************************
 */
@@ -338,7 +359,6 @@ vector<int> vectorOfRanks(const vector<Card> &reserve, Tri sortCriteria);
 * ===========                                                                                   *
 * the function applies a merge sort to the vector @param deck                                   *
 *                                                                                               *
-*                                                                                               *
 * Input parameters                                                                              *
 * ====================                                                                          *
 * @param deck -> a reference to the vector of integers that will be sorted                      *
@@ -348,12 +368,9 @@ vector<int> vectorOfRanks(const vector<Card> &reserve, Tri sortCriteria);
 * @param sortcriteria -> a Tri type value representing the sorting criterion                    *
 * @param reserve -> a constant reference to a vector of Card objects called                     *
 *                                                                                               *
-*                                                                                               *
 * Output parameters                                                                             *
 * ====================                                                                          *
 * returns nothing                                                                               *
-*                                                                                               *
-*                                                                                               *
 *                                                                                               *
 *************************************************************************************************
 */
@@ -364,8 +381,7 @@ void mergeCard(vector<int> &deck, int start1, int end1, int end2, Tri sortcriter
 *                                                                                               *
 * Description                                                                                   *
 * ===========                                                                                   *
-* recursive implementation of mergeCard() function that sorts the vector in descending order    *
-*                                                                                               *
+* recursive implementation of mergeCard()                                                       *
 *                                                                                               *
 * Input parameters                                                                              *
 * ====================                                                                          *
@@ -375,12 +391,9 @@ void mergeCard(vector<int> &deck, int start1, int end1, int end2, Tri sortcriter
 * @param sortcriteria -> a Tri type value representing the sorting criterion                    *
 * @param reserve -> a constant reference to a vector of Card objects called                     *
 *                                                                                               *
-*                                                                                               *
 * Output parameters                                                                             *
 * ====================                                                                          *
 * returns nothing                                                                               *
-*                                                                                               *
-*                                                                                               *
 *                                                                                               *
 *************************************************************************************************
 */
@@ -394,7 +407,6 @@ void mergeSortBisCard(vector<int> &deck, int start, int end, Tri sortcriteria, c
 * this wrapper function provides a simpler interface for calling the "mergeSortBisCard"         *
 * function and starting the process of sorting the input vector.                                *
 *                                                                                               *
-*                                                                                               *
 * Input parameters                                                                              *
 * ====================                                                                          *
 * @param deck -> a reference to the vector of integers that will be sorted                      *
@@ -402,12 +414,9 @@ void mergeSortBisCard(vector<int> &deck, int start, int end, Tri sortcriteria, c
 * @param sortcriteria -> a Tri type value representing the sorting criterion                    *
 * @param reserve -> a constant reference to a vector of Card objects called                     *
 *                                                                                               *
-*                                                                                               *
 * Output parameters                                                                             *
 * ====================                                                                          *
 * returns nothing                                                                               *
-*                                                                                               *
-*                                                                                               *
 *                                                                                               *
 *************************************************************************************************
 */
@@ -421,19 +430,15 @@ void mergeSortCard(vector<int> &deck, int length, Tri sortCriteria, const vector
 * sorts a vector of integers using the merge sort algorithm, with the ability to specify a      *
 * sorting criterion using a Tri type value and a reference to a vector of Card objects.         *
 *                                                                                               *
-*                                                                                               *
 * Input parameters                                                                              *
 * ====================                                                                          *
 * @param deck -> a reference to the vector of integers that will be sorted                      *
 * @param sortcriteria -> a Tri type value representing the sorting criterion                    *
 * @param reserve -> a constant reference to a vector of Card objects called                     *
 *                                                                                               *
-*                                                                                               *
 * Output parameters                                                                             *
 * ====================                                                                          *
 * returns nothing                                                                               *
-*                                                                                               *
-*                                                                                               *
 *                                                                                               *
 *************************************************************************************************
 */
@@ -444,19 +449,15 @@ void sortVectorOfCard(vector<int> &deck, Tri sortCriteria, const vector<Card> &r
 *                                                                                               *
 * Description                                                                                   *
 * ===========                                                                                   *
-* sorts the reserve of the targeted game in ascending order                                     *
-*                                                                                               *
+* sorts the reserve of the targeted game in alphabetic order                                    *
 *                                                                                               *
 * Input parameters                                                                              *
 * ====================                                                                          *
 * @param reserve -> the vector of Card we want to sort                                          *
 *                                                                                               *
-*                                                                                               *
 * Output parameters                                                                             *
 * ====================                                                                          *
 * returns nothing                                                                               *
-*                                                                                               *
-*                                                                                               *
 *                                                                                               *
 *************************************************************************************************
 */
@@ -606,7 +607,6 @@ void sortReserve(vector<Card> &reserve);
 
 
 /*
-
  ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀
@@ -622,81 +622,4 @@ void sortReserve(vector<Card> &reserve);
 ⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉
-
-
-
- ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆
-⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿
-⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀
-⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉
-
- ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⣀⣀⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠛⠀⠂⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠉⠁⠀⡄⠀⠉⠉⠛⠿⢿⣿⣿⡋⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠛⠉⠁⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠈⠉⠛⠦⡀⠈⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠉⠀⠀⠀⠀⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⠿⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀⠐⠚⠛⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⣶⣶⣦⣄⡀⠀⠀⠀⠈⠀⠈⠙⠛⠛⠻⣿⣿⣿⣿
-⣿⣿⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠒⠒⠒⠻⣿⣿⣆⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣶⣶⡦⠀⢀⠠⠀⢀⠀⠀⢸⣿⣿⣿
-⣿⣿⣿⣷⣀⣠⣤⣤⣾⣷⣶⣾⣿⣿⣿⣿⣷⣶⣶⣿⣿⡇⠀⠀⠈⠁⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣟⣫⣿⠗⠋⢀⣼⣿⣴⣴⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢁⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⣤⡀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⢀⣾⣿⣷⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⢀⣿⣿⣿⣿⡆⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⣾⣿⣿⣿⣿⣿⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⡀⠀⠈⠻⣿⣿⣿⣿⣇⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠄⠀⠀⣿⣿⣿⣿⣿⡀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⣼⣿⣿⣿⣿⣿⡇⠀⠀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣀⣀⣼⣿⣿⣿⣿⣿⣿⡇⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-
- ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆
-⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿
-⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀
-⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉
-
- ⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆
-⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿
-⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀
-⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉
-
- */
+*/

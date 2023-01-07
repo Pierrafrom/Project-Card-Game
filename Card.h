@@ -12,6 +12,11 @@ using namespace std;
 enum Tri {AMDDesc, AMDAsc, ADMDesc, ADMAsc, MADDesc, MADAsc, MDADesc, MDAAsc, DAMDesc, DAMAsc, DMADesc, DMAAsc,
         ScoreDesc, ScoreAsc, ScoreWithCoefAMDDesc, ScoreWithCoefAMDAsc};
 
+// Define here the path and the name of the file which contain the data for the reserve 
+const string PATH = R"(C:\Users\pierr\OneDrive\travail IUT\Project-Card-Game\)";
+const string FILENAME = "cards_data.txt";
+
+
 //Declaration of class
 class Card
 {

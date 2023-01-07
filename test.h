@@ -13,23 +13,26 @@ void testDisplayShortMethod();
 void testPhysicalDamageMethod();
 void testMagicalDamage();
 void testCardEqualityOperator();
-void test_fill();
 //################# Player ##################################################
 void testConstructorsPlayer();
 void testGettersMethods();
 void testDisplayMethod();
 void testInitMethod();
-void testShuffleMethod();
 void testEnoughCardsMethod();
 void testEnoughPrestigeMethod();
 void testNextCardMethod();
 void testPlaysACardMethod();
-void testletChooseMethod();
-//################ Game  ###################################################
+void testShuffleMethod();
+//################ Game ###################################################
 void testEndedMethod();
 void testConstructorsGame();
 void testIsGameFinishedMethod();
-void testIncrementOperator();
+void testPlaysARoundMethod();
+void testWinnerMethod();
 void testFillReserve();
+// ################ Function ##############################################
+void testSortVectorOfCard();
+void testVectorOfRanks();
+void testFillDeckWithCriteria();
 
 #endif //PROJECT_CARD_GAME_TESTS_H

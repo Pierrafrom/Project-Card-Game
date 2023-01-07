@@ -63,8 +63,21 @@ int main()
                 cin >> answer;
             }
 
-            // Rules
-
+            cout << "Here are the rules of the game : \n"
+                    "the game is basically player versus player game but you can be alone and face a bot,\n"
+                    "each player has a pile of 20 cards wich they took from the same reserve.\n"
+                    "Each card has a name, an attack, a defense and a magic value, your goal \n"
+                    "will be to reduce the prestige poins of your ennemy and to protect yours.\n"
+                    "The winner will be the first to take down the ennemy or the last to have any cards in their deck !\n"
+                    "Choose your strategy and your cards wisely knowing that :\n"
+                    "         - the player having the biggest amount of attack (physical damages) will decrease the prestige of his\n"
+                    "           opponent by the difference between his attack value and the defense value of the other player\n"
+                    "         - if both of the players have the same amount of attack, no harm to any players prestige will be caused\n"
+                    "         - If the defender has more defense than the attack value of the other player, the defender\n"
+                    "           does not gain any prestige points\n"
+                    "         - The player having the biggest amount of magical power will reduce\n"
+                    "           the prestige of his ennemy by the difference of the magical power of value of the two player"
+            <<endl;
             if (answer == '1')
             {
                 // Game for 1 player

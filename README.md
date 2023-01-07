@@ -42,8 +42,10 @@ Choose your strategy and your cards wisely knowing that : <br>
 
 ## ‼️ If you have an error
 - If you have this error
-  ![error](img/fileOpen.PNG)
+  ![error]<br>
+  (img/fileOpen.PNG)<br>
   Be sure that you've entered the correct path and file name in the constants found on "Card.h"
 - If you have this error
-  ![error](img/data.PNG)
+  ![error]<br>
+  (img/data.PNG)<br>
   Check if you've download the correct file, you can find it on our github project page <a href="https://github.com/Pierrafrom/Project-Card-Game/blob/main/cards_data.txt" target="_blank">cards_data.txt</a> on our project page.

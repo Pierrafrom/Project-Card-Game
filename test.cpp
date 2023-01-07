@@ -2,13 +2,15 @@
 // by Pierre
 // and Samuel
 
-#include "test.h"
+#include "Tests.h"
 #include <iostream>
 #include "Card.h"
 #include "Player.h"
 #include "Game.h"
 #include <vector>
 #include <sstream>
+#include <string>
+
 
 using namespace std;
 
@@ -23,26 +25,29 @@ void testAll()
     testPhysicalDamageMethod();
     testMagicalDamage();
     testCardEqualityOperator();
-    test_fill();
     // Player
     cout << "----------------- Player --------------------------------" << endl;
     testConstructorsPlayer();
     testGettersMethods();
     testDisplayMethod();
     testInitMethod();
-    testShuffleMethod();
     testEnoughCardsMethod();
     testEnoughPrestigeMethod();
     testNextCardMethod();
     testPlaysACardMethod();
-    testletChooseMethod();
+    testShuffleMethod();
     // Game
     cout << "----------------- Game ----------------------------------" << endl;
     testConstructorsGame();
     testEndedMethod();
     testIsGameFinishedMethod();
-    testIncrementOperator();
+    testPlaysARoundMethod();
+    testWinnerMethod();
     testFillReserve();
+    cout << "----------------- Function ------------------------------" << endl;
+    testSortVectorOfCard();
+    testVectorOfRanks();
+    testFillDeckWithCriteria();
     cout << "############################ End Testing #####################################################" << endl;
 }
 
@@ -112,7 +117,7 @@ void testDisplayShortMethod()
     // Create a card with a name, attack, defense, and magic
     Card card("Gol d Roger", 10, 8, 10);
 
-    // Test the displayShort method by capturing its output
+    // Test the displayLong method by capturing its output
     stringstream output;
     streambuf *old = cout.rdbuf(output.rdbuf());
     cout << card;
@@ -123,7 +128,7 @@ void testDisplayShortMethod()
     if (output.str() != expectedOutput)
     {
         ok = false;
-        cout << "Error: The output of the displayShort method is incorrect" << endl;
+        cout << "Error: The output of the displayLong method is incorrect" << endl;
     }
 
     // Result of the test
@@ -195,10 +200,10 @@ void testMagicalDamage()
     Card C1("Gol d Roger", 10, 8, 10);
     Card C2("nami", 5, 5, 15);
     Card C3("Edward Newgate", 10, 8, 10);
-    Card C4("Joz", 4, 15, 0);
+    Card C4("Joz", 4, 15, 1);
 
     // Test for a win
-    if ((C1 ^ C4) != -10)
+    if ((C1 ^ C4) != -9)
     {
         ok = false;
         cout << "Error : Result for a win incorrect" << endl;
@@ -224,7 +229,6 @@ void testMagicalDamage()
         cout << "MagicalDamage method : OK" << endl;
     }
 }
-
 
 void testCardEqualityOperator()
 {
@@ -259,29 +263,6 @@ void testCardEqualityOperator()
         cout << "Equality operator : OK" << endl;
     }
 }
-
-void test_fill(){
-    string test_data = "Lightning Bolt,8,0,18";
-    Card card1;
-    card1.fill(test_data);
-    if (card1.getName() != "Lightning Bolt") {
-        cout << "Error: incorrect name" << endl;
-    }
-    if (card1.getAttack() != 8) {
-        cout << "Error: incorrect attack" << endl;
-    }
-    if (card1.getDefense() != 0) {
-        cout << "Error: incorrect defense" << endl;
-    }
-    if (card1.getMagic() != 18) {
-        cout << "Error: incorrect magic" << endl;
-    }
-    else{
-        cout<<"Fill method : OK"<<endl;
-    }
-
-}
-
 
 // ################### Player ##########################################
 void testConstructorsPlayer()
@@ -377,7 +358,9 @@ void testInitMethod()
     // Create the boolean for the result of the test
     bool ok = true;
 
+    // Create a player with a name and prestige
     Player player("Player 1", 3, {});
+
     // Test the init method
     player.init();
 
@@ -396,22 +379,6 @@ void testInitMethod()
     {
         cout << "Init method : OK" << endl;
     }
-
-}
-
-void testShuffleMethod(){
-    cout<<"testing the method shuffle :"<<endl;
-    // Create a player with a name and prestige
-    Player player("Player 1", 3, {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19});
-    player.shuffle();
-    vector<int> deck;
-    deck=player.getDeck();
-    cout<<endl;
-    for(int i : deck){
-        cout<<deck[i]<<", ";
-    }
-
-    cout<<endl;
 }
 
 void testEnoughCardsMethod()
@@ -589,43 +556,29 @@ void testPlaysACardMethod()
     }
 }
 
-void testletChooseMethod() {
-    // Create two players with empty decks
-    Player player1("player1", 25, {});
-    Player player2("player2", 25, {});
+void testShuffleMethod()
+{
+    // Create the boolean for the result of the test
+    bool ok = true;
 
-    // Create the reserve of cards
-    Card C1("Sword",10,5,0);
-    Card C2("Shield",0,10,0);
-    Card C3("Staff",5,0,11);
-    Card C4("Dagger",5,0,5);
-    Card C5("Mace",10,0,0);
-    Card C6("Armor",0,15,0);
-    Card C7("Helmet",0,5,0);
-    Card C8("Bow",5,0,0);
-    Card C9("Arrows",7,0,0);
-    Card C10("Fireball",5,0,13);
-    Card C11("Lightning Bolt",8,0,18);
-    Card C12("Healing Potions",0,0,10);
-    Card C13("Mana Potions",0,0,15);
-    Card C14("Poisoned Dagger",8,0,0);
-    Card C15("Explosive Arrows",10,0,0);
-    Card C16("Giant Hammer",15,5,0);
-    Card C17("Wand of Telekinesis",5,0,16);
-    Card C18("Ring of Invisibility",0,1,35);
-    Card C19("Amulet of Regeneration",0,0,12);
-    Card C20("Tsurugi", 35, 5, 0);
+    // Create a player with a deck
+    Player player("player", 25, {0, 1, 2, 3, 4, 5});
 
-    vector<Card> reserve = {C1,C2,C3,C4,C5,C6,C7,C8,C9,C10,C11,C12,C13,C14,C15,C16,C17,C18,C19,C20};
-    cout<<"LetChoose method : ";
-        player1.letChoose(reserve);
-        player1.display();
-    cout<<endl;
+    // Shuffle the deck
+    player.shuffle();
 
-    cout<<"LetChooseDicho method : ";
-        player2.letChooseDicho(reserve);
-        player2.display();
-    cout<<endl;
+    // Verify that the shuffled deck is different from the initial one
+    if (player.getDeck() == vector<int>({0, 1, 2, 3, 4, 5}))
+    {
+        cout << "Error: The shuffled deck is the same as the initial one." << endl;
+        ok = false;
+    }
+
+    // Result of the test
+    if (ok)
+    {
+        cout << "Shuffle method: OK" << endl;
+    }
 }
 
 // ################ Game ###############################################
@@ -636,10 +589,7 @@ void testConstructorsGame()
 
     // Test data variables
     vector<Card> reserve = {Card("Card 1", 10, 5, 3),
-                            Card("Card 2", 6, 7, 2),
-                            Card("Card 3",11,2,0),
-                            Card("Card 4",0,2,14),
-                            Card("Card 5",3,7,6)};
+                            Card("Card 2", 6, 7, 2)};
     Player player1 = Player("Player 1", 10, {1, 2, 3});
     Player player2 = Player("Player 2", 5, {4, 5});
     Player expectedPlayer("Yugi", 25, {0, 1, 2, 3, 4});
@@ -779,11 +729,11 @@ void testIsGameFinishedMethod()
     // Result of the test
     if (ok)
     {
-        cout << "IsGameFinishedMethod : OK" << endl;
+        cout << "IsGameFinished method : OK" << endl;
     }
 }
 
-void testIncrementOperator()
+void testPlaysARoundMethod()
 {
     // Create the boolean for the result of the test
     bool ok = true;
@@ -808,7 +758,8 @@ void testIncrementOperator()
     {
         ok = false;
         cout << "Error: The player1's number of prestige is " << game.GetPlayerOne().GetPrestige()
-             << "and it should be equal to 25, the player2's number of prestige is " << game.GetPlayerTwo().GetPrestige() <<
+             << "and it should be equal to 25, the player2's number of prestige is "
+             << game.GetPlayerTwo().GetPrestige() <<
              "and it should be equal to 15" << endl;
     }
 
@@ -818,7 +769,8 @@ void testIncrementOperator()
     {
         ok = false;
         cout << "Error: The player1's number of prestige is " << game.GetPlayerOne().GetPrestige()
-             << "and it should be equal to 8, the player2's number of prestige is " << game.GetPlayerTwo().GetPrestige() <<
+             << "and it should be equal to 8, the player2's number of prestige is " << game.GetPlayerTwo().GetPrestige()
+             <<
              "and it should be equal to 15" << endl;
     }
 
@@ -828,20 +780,81 @@ void testIncrementOperator()
     {
         ok = false;
         cout << "Error: The player1's number of prestige is " << game.GetPlayerOne().GetPrestige()
-             << "and it should be equal to 8, the player2's number of prestige is " << game.GetPlayerTwo().GetPrestige() <<
+             << "and it should be equal to 8, the player2's number of prestige is " << game.GetPlayerTwo().GetPrestige()
+             <<
              "and it should be equal to 15" << endl;
     }
 
     // Result of the test
     if (ok)
     {
-        cout << "IncrementOperator : OK" << endl;
+        cout << "PlaysARound method : OK" << endl;
     }
-
-
 }
 
-void testFillReserve() {
+void testWinnerMethod()
+{
+    // Create the boolean for the result of the test
+    bool ok = true;
+
+    // Create two players with different deck
+    Player player1("player1", 25, {2, 1, 0});
+    Player player2("player2", 25, {2, 4, 3});
+
+    // Create the reserve of cards
+    vector<Card> reserve = {{"Gol d Roger", 15, 13, 15},
+                            {"Chopper",     3,  6,  2},
+                            {"Usopp",       3,  2,  0},
+                            {"Ace",         8,  8,  12},
+                            {"Shanks",      10, 10, 15},};
+
+    // Create a Game
+    Game game(reserve, player1, player2);
+
+    // It shouldn't exist a winner now
+    if (game.winner() != 0)
+    {
+        cout << "Error: We shouldn't have a winner" << endl;
+        ok = false;
+    }
+
+    game.modifyPlayerTwoPrestige(0);
+
+    // Player 1 is the winner
+    if (game.winner() != 1)
+    {
+        cout << "Error: The winner should be player 1" << endl;
+        ok = false;
+    }
+
+    game.modifyPlayerTwoPrestige(10);
+    game.modifyPlayerOnePrestige(0);
+
+    // Player 2 is the winner
+    if (game.winner() != -1)
+    {
+        cout << "Error: The winner should be player 2" << endl;
+        ok = false;
+    }
+
+    game.modifyPlayerTwoPrestige(0);
+
+    // It's a draw
+    if (game.winner() != 0)
+    {
+        cout << "Error: there is no winner because the game is a draw" << endl;
+        ok = false;
+    }
+
+    // Result of the test
+    if (ok)
+    {
+        cout << "Winner method : OK" << endl;
+    }
+}
+
+void testFillReserve()
+{
     // Create the boolean for the result of the test
     bool ok = true;
 
@@ -856,13 +869,189 @@ void testFillReserve() {
     Game game(reserve, player1, player2);
 
     //starting the tests
-    game.fillReserve("cards_data.txt");
+    game.fillReserve("C:/Users/pierr/OneDrive/travail IUT/Project-Card-Game/cards_data.txt");
     game.getReserve();
-    ok = game.getSizeReserve()>0;
+    ok = game.getSizeReserve() > 0;
     if (ok)
-        cout<<"fillReserve : OK"<<endl;
+    {
+        cout << "fillReserve : OK" << endl;
+    }
     else
-        cout<<"fillReserve : ERROR"<<endl;
+    {
+        cout << "fillReserve : ERROR" << endl;
+    }
 }
 
+// ################ Function ###############################################
 
+void testSortVectorOfCard()
+{
+    // Create the boolean for the result of the test
+    bool ok = true;
+
+    // Create the reserve of cards
+    vector<Card> reserve = {{"Gol d Roger", 9,  15, 13},
+                            {"Chopper",     3,  6,  2},
+                            {"Usopp",       3,  2,  2},
+                            {"Ace",         9,  9,  12},
+                            {"Shanks",      10, 9,  15},};
+
+    // Create a vector of integers
+    vector<int> deck = {3, 2, 4, 1, 0};
+
+    // We don't test with every possible's sort criteria, but we regrouped every possibility in this 5 cases
+
+    // Sort the vector order by magic then by attack then by defense in descending order
+    sortVectorOfCard(deck, MADDesc, reserve);
+
+    // Check if the vector is correctly sorted
+    if (deck != vector<int>{4, 0, 3, 1, 2})
+    {
+        cout << "Error: the vector is not correctly sorted" << endl;
+        ok = false;
+    }
+
+    // Sort the vector order by attack, then by magic, then by defense in descending order
+    sortVectorOfCard(deck, AMDDesc, reserve);
+
+    // Check if the vector is correctly sorted
+    if (deck != vector<int>{4, 0, 3, 1, 2})
+    {
+        cout << "Error: the vector is not correctly sorted" << endl;
+        ok = false;
+    }
+
+    // Sort the vector order by defense, then by attack, then by magic in descending order
+    sortVectorOfCard(deck, DAMDesc, reserve);
+
+    // Check if the vector is correctly sorted
+    if (deck != vector<int>{0, 4, 3, 1, 2})
+    {
+        cout << "Error: the vector is not correctly sorted" << endl;
+        ok = false;
+    }
+
+    // Sort the vector in ascending order by score
+    sortVectorOfCard(deck, ScoreAsc, reserve);
+
+    // Check if the vector is correctly sorted
+    if (deck != vector<int>{2, 1, 3, 4, 0})
+    {
+        cout << "Error: the vector is not correctly sorted" << endl;
+        ok = false;
+    }
+
+    // Sort the vector in ascending order by score with coefficients
+    sortVectorOfCard(deck, ScoreWithCoefAMDAsc, reserve);
+
+    // Check if the vector is correctly sorted
+    if (deck != vector<int>{2, 1, 3, 0, 4})
+    {
+        cout << "Error: the vector is not correctly sorted" << endl;
+        ok = false;
+    }
+
+    // Result of the test
+    if (ok)
+    {
+        cout << "SortVectorOfCard function : OK" << endl;
+    }
+}
+
+void testVectorOfRanks()
+{
+    // Create the boolean for the result of the test
+    bool ok = true;
+
+    // Create the reserve of cards
+    vector<Card> reserve = {{"Gol d Roger", 9,  15, 13},
+                            {"Chopper",     3,  6,  2},
+                            {"Usopp",       3,  2,  2},
+                            {"Ace",         9,  9,  12},
+                            {"Shanks",      10, 9,  15},};
+
+    // We don't test with every possible's sort criteria, but we regrouped every possibility in this 4 cases
+
+    // Test with sort by attack, then magic, then defense in descending order
+    vector<int> ranks = vectorOfRanks(reserve, AMDDesc);
+    if (ranks != vector<int>({1, 3, 4, 2, 0}))
+    {
+        cout << "Error: vectorOfRanks with sort by attack, then magic, then defense in descending order is incorrect"
+             << endl;
+        ok = false;
+    }
+
+    // Test with sort by attack, then magic, then defense in ascending order
+    ranks = vectorOfRanks(reserve, AMDAsc);
+    if (ranks != vector<int>({3, 1, 0, 2, 4}))
+    {
+        cout << "Error: vectorOfRanks with sort by attack, then magic, then defense in ascending order is incorrect"
+             << endl;
+        ok = false;
+    }
+
+    // Test with sort by magic, then by attack, then by defense in descending order
+    ranks = vectorOfRanks(reserve, MADDesc);
+    if (ranks != vector<int>({1, 3, 4, 2, 0}))
+    {
+        cout
+                << "Error: vectorOfRanks with sort by magic, then by attack, then by defense in descending order is incorrect"
+                << endl;
+        ok = false;
+    }
+
+    // Test with sort by defense, then by attack, then by magic in descending order
+    ranks = vectorOfRanks(reserve, DAMDesc);
+    if (ranks != vector<int>({0, 3, 4, 2, 1}))
+    {
+        cout
+                << "Error: vectorOfRanks with sort by defense, then by attack, then by magic in descending order is incorrect"
+                << endl;
+        ok = false;
+    }
+
+    // Result of the test
+    if (ok)
+    {
+        cout << "VectorOfRanks function : OK" << endl;
+    }
+}
+
+void testFillDeckWithCriteria()
+{
+    // Create the boolean for the result of the test
+    bool ok = true;
+
+    // Create a player with a non-empty deck
+    Player player("player", 25, {0, 1, 2, 3, 4});
+
+    // Create the reserve of cards
+    vector<Card> reserve = {{"Gol d Roger", 15, 13, 15},
+                            {"Chopper",     3,  6,  2},
+                            {"Usopp",       3,  2,  0},
+                            {"Ace",         8,  8,  12},
+                            {"Shanks",      10, 10, 15},};
+
+    // This function calls the VectorOfRanks function so if this one is correct, FillDeckWithCriteria
+    // will be correct for every sort criteria. So, it is sufficient to test with one sort criteria.
+
+    // Fill the deck with cards which have the highest attack, then magic, then defense in descending order
+    player.fillDeckWithCriteria(reserve, AMDDesc);
+
+    // Check if the deck is filled with cards with the highest attack
+    unsigned int size = player.getDeck().size();
+    for (int i = 0; i < size; i++)
+    {
+        if (player.getDeck() != vector<int>({0, 4, 3, 1, 2}))
+        {
+            cout << "Error: The deck is not correctly filled " << endl;
+            ok = false;
+        }
+    }
+
+    // Result of the test
+    if (ok)
+    {
+        cout << "FillDeckWithCriteria function: OK" << endl;
+    }
+}

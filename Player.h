@@ -413,7 +413,7 @@ public :
     */
     void setAIDeck(char difficulty, const vector<Card> &reserve);
 
-    // The following methods are not in the instructions, but we had them because they are useful for tests
+    // The following methods are not in the instructions, but we had them because they are useful many times
 
     /**
     *************************************************************************************************
@@ -530,9 +530,6 @@ public :
     *************************************************************************************************
     */
     bool operator==(const Player &player);
-
-    //~Player();
-
 };
 
 /**

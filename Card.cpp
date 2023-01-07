@@ -588,7 +588,7 @@ void Card::fill(const string &line)
 {
     // opening the file
     ifstream file;
-    file.open("C:/Users/pierr/OneDrive/travail IUT/Project-Card-Game/cards_data.txt");
+    file.open((PATH + FILENAME));
 
     if (!file.is_open())
     {

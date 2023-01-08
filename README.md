@@ -2,15 +2,17 @@
 
 ### Created by <a href="https://github.com/Pierrafrom" target="_blank">Pierre Fromont Boissel</a> and <a href="https://github.com/Samuelito78" target="_blank">Samuel Boix-Segura</a> on January 2023. <br>
 
+summary and objectives
+
 ## 🖥️ Setup
-1. Define the path and the name of the file that contains the data for cards. <br>
-To do this, open the file "Card.h". <br>
+1. You ll nee to setup the correct path to be able to use a card loading file.<br>
+Open the file "Card.h". <br>
 Then define the path and the filename in the constants.
 ![Path](img/Path.PNG)
-2. Do you want to see the test of the functions or not? <br>
-If you want to see them, open main.cpp and define TEST like this: <br>
+2. Debugging mode is also available<br>
+To enable it , you need to define TEST constant in main.cpp like this: <br>
 ![testOn](img/testOn.PNG) <br>
-If you don't want to see them just comment this line. <br>
+In case you do not need the use of debugging fucntions, just comment teh constant declaration line. <br>
 ![testOff](img/testOff.PNG)
 
 ## 📃 Rules

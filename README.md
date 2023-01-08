@@ -3,23 +3,23 @@
 ### Created by <a href="https://github.com/Pierrafrom" target="_blank">Pierre Fromont Boissel</a> and <a href="https://github.com/Samuelito78" target="_blank">Samuel Boix-Segura</a> on January 2023. <br>
 
 ## 🎯 Summary and objectives
-The purpose of this project is a to propose a card game. Each card has some spcifities according three criteria such as Attack, Defense and Magic.
-The has bees realased as guided project for the studends of computer science IUT of Saclay university (France). It basically teachs to students the object-oriented programming and how to manage and sort Vector data struture in C++. This is a 1 month projetc effort for a team opf 2 students: Pierre Fromont and Samuel Boix-Segura. I has been designes in december 2022 / January 2023.
+The purpose of this project is a to propose a card game. Each card has some specifities according three criteria such as Attack, Defense and Magic.
+The game has been realased as guided project for the computer science studends of the IUT of Paris-Saclay university (France). It basically teaches students the object-oriented programming and how to manage and sort Vector data struture in C++. This was a 1 month project made by a team of 2 students: Pierre Fromont and Samuel Boix-Segura. The project has been created from december 2022 to January 2023.
 
 ## 🖥️ Setup
-1. You ll nee to setup the correct path to be able to use a card loading file.<br>
+1. You'll need to setup the correct path to be able to use a card loading file.<br>
 Open the file "Card.h". <br>
 Then define the path and the filename in the constants.
 ![Path](img/Path.PNG)
 2. Debugging mode is also available<br>
-To enable it , you need to define TEST constant in main.cpp like this: <br>
+In order to enable it , you need to define TEST constant in main.cpp like this: <br>
 ![testOn](img/testOn.PNG) <br>
-In case you do not need the use of debugging fucntions, just comment teh constant declaration line. <br>
+In case you do not need the use of debugging fucntions, just comment the constant declaration line. <br>
 ![testOff](img/testOff.PNG)
 
 ## 📃 Rules
 Here are the rules of the game : <br>
-- The game is player versus player game but you can be alone and face a AI.
+- The game is a player versus player game but you can be alone and face a bot.
 - Each player has a deck of 20 cards which they took from the same card reserve.
 - Each card has a name, an attack, a defense and a magic power.
 - Your goal is to reduce the prestige poins of your enemy and to protect yours.
@@ -41,8 +41,8 @@ Choose your strategy and your cards wisely knowing that : <br>
 2. Enter your name
 3. Choose how do you want fill your deck
 4. Choose how do you want to sort your deck
-5. If you play alone, choose the difficulty of the AI
-6. The game start automaticly
+5. If you're playing alone, choose the difficulty of the bot
+6. The game starts automaticly
 
 ## ‼️ If you have an error
 - If you encounter this error :<br>

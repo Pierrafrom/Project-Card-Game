@@ -3,8 +3,7 @@
 ### Created by <a href="https://github.com/Pierrafrom" target="_blank">Pierre Fromont Boissel</a> and <a href="https://github.com/Samuelito78" target="_blank">Samuel Boix-Segura</a> on January 2023. <br>
 
 ## 🎯 Summary and objectives
-The goal of this project was to design a card game in which each card had unique characteristics based on three attributes: Attack, Defense, and Magic.<br> 
-The game was developed as a guided project for computer science students at the IUT of Paris-Saclay University in France.<br>
+The goal of this project was to design a card game in which each card had unique characteristics based on three attributes: Attack, Defense, and Magic. The game was developed as a guided project for computer science students at the IUT of Paris-Saclay University in France.<br>
 This project was intended to teach students object-oriented programming and how to manipulate and sort vector data structures in C++.<br> 
 This project was completed over the course of one month by a team of two students: Pierre Fromont and Samuel Boix-Segura.<br>
 The work on this project took place from December 2022 to January 2023

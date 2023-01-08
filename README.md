@@ -4,7 +4,7 @@
 
 ## 🎯 Summary and objectives
 The purpose of this project is a to propose a card game. Each card has some spcifities according three criteria such as Attack, Defense and Magic.
-The has bees realased as guided project for the studends of computer science IUT of Saclay university (France). It basically teachs to students how to manage and sort Vector data struture in C++. This is a 1 month projetc effort for a team opf 2 students: Pierre Fromont and Samuel Boix-Segura. I has been designes in december 2023.
+The has bees realased as guided project for the studends of computer science IUT of Saclay university (France). It basically teachs to students how to manage and sort Vector data struture in C++. This is a 1 month projetc effort for a team opf 2 students: Pierre Fromont and Samuel Boix-Segura. I has been designes in december 2022 / January 2023.
 
 ## 🖥️ Setup
 1. You ll nee to setup the correct path to be able to use a card loading file.<br>
@@ -50,5 +50,5 @@ Choose your strategy and your cards wisely knowing that : <br>
   Make sure that you've entered the right path and file name in the constants found on "Card.h"
 - If you encounter this error :<br>
   ![error](img/data.PNG)<br>
-  This message is the result of a wrongly formatted input data file. In case you need a sample data file, you can find one on our github project page <a href="https://github.com/Pierrafrom/Project-Card-Game/blob/main/cards_data.txt" target="_blank">cards_data.txt</a> on our project page. In case you want to add your own cards and data just keep in mind that the names of the cards cannot comport a space and that the minimum of cards in the file is 20 in order to run the game without bugs.
+  This message is the result of a wrongly formatted input data file. In case you need a sample data file, you can find one on our github project page <a href="https://github.com/Pierrafrom/Project-Card-Game/blob/main/cards_data.txt" target="_blank">cards_data.txt</a> on our project page. In case you want to add your own cards and data just keep in mind that the names of the cards cannot comport a space and that the minimum of cards in the file is 20 in order to run the game without bugs. <br>
 The input data file is a csv file . 1st column holds Cards name, 2nd holds attack, 3rd holds Defence and last holds Magic. Their are no limit to value you can picck, but keep in mind you ll have more fun with values between 0-15.

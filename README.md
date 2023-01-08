@@ -4,7 +4,7 @@
 
 ## 🎯 Summary and objectives
 The purpose of this project is a to propose a card game. Each card has some spcifities according three criteria such as Attack, Defense and Magic.
-The has bees realased as guided project for the studends of computer science IUT of Saclay university (France). It basically teachs to students how to manage and sort Vector data struture in C++. This is a 1 month projetc effort for a team opf 2 students: Pierre Fromont and Samuel Boix-Segura. I has been designes in december 2022 / January 2023.
+The has bees realased as guided project for the studends of computer science IUT of Saclay university (France). It basically teachs to students the object-oriented programming and how to manage and sort Vector data struture in C++. This is a 1 month projetc effort for a team opf 2 students: Pierre Fromont and Samuel Boix-Segura. I has been designes in december 2022 / January 2023.
 
 ## 🖥️ Setup
 1. You ll nee to setup the correct path to be able to use a card loading file.<br>

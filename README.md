@@ -51,4 +51,4 @@ Choose your strategy and your cards wisely knowing that : <br>
 - If you encounter this error :<br>
   ![error](img/data.PNG)<br>
   This message is the result of a wrongly formatted input data file. In case you need a sample data file, you can find one on our github project page <a href="https://github.com/Pierrafrom/Project-Card-Game/blob/main/cards_data.txt" target="_blank">cards_data.txt</a> on our project page. In case you want to add your own cards and data just keep in mind that the names of the cards cannot comport a space and that the minimum of cards in the file is 20 in order to run the game without bugs. <br>
-The input data file is a csv file . 1st column holds Cards name, 2nd holds attack, 3rd holds Defence and last holds Magic. Their are no limit to value you can picck, but keep in mind you ll have more fun with values between 0-15.
+The input data file is a csv file . 1st column holds Cards name, 2nd holds attack, 3rd holds Defence and last holds Magic. Their are no limit to value you can pick, but keep in mind you ll have more fun with values between 0-15.

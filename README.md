@@ -6,7 +6,8 @@
 The goal of this project was to design a card game in which each card had unique characteristics based on three attributes: Attack, Defense, and Magic.<br> 
 The game was developed as a guided project for computer science students at the IUT of Paris-Saclay University in France.<br>
 This project was intended to teach students object-oriented programming and how to manipulate and sort vector data structures in C++.<br> 
-This project was completed over the course of one month by a team of two students: Pierre Fromont and Samuel Boix-Segura. The work on this project took place from December 2022 to January 2023
+This project was completed over the course of one month by a team of two students: Pierre Fromont and Samuel Boix-Segura.<br>
+The work on this project took place from December 2022 to January 2023
 
 ## 🖥️ Setup
 1. You'll need to setup the correct path to be able to use a card loading file.<br>

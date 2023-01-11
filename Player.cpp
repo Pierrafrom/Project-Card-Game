@@ -246,7 +246,8 @@ void enterName(const vector<Card> &reserve, vector<string> &nameChosen, string &
 {
     bool ok1 = false, ok2 = false;
     cout << "Enter the name of your Card number " << ind << endl;
-    cin >> name;
+    cin.ignore(256, '\n');
+    getline(cin,name);
 
     // check if the card have already been entered
     ok1 = !isInVector(name, nameChosen, sort);

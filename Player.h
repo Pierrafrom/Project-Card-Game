@@ -544,7 +544,7 @@ public :
     * Input parameters                                                                              *
     * ====================                                                                          *
     * @param name The name of the card to search for.                                               *
-    * @param reserve The game's reserve of cards.                                                   *
+    * @param reserveName The game's reserve with only the names.                                    *
     * @param sort A boolean value indicating whether to use a dichotomy search (if True) or a       *
     * sequential search (if False)                                                                  *
     *                                                                                               *
@@ -554,23 +554,19 @@ public :
     *                                                                                               *
     *************************************************************************************************
     */
-bool isInReserve(const string &name, const vector<Card> &reserve, bool sort);
+bool isInReserve(const string &name, const vector<string> &reserveName, bool sort);
 
 /**
     *************************************************************************************************
     *                                                                                               *
     * Description                                                                                   *
     * ===========                                                                                   *
-    * This function searches a vector of strings for a given name. The search can be performed      *
-    * using either a dichotomy search or a sequential search, depending on the value of the         *
-    * sort parameter.                                                                               *
+    * This function searches a vector of strings for a given name.                                  *
     *                                                                                               *
     * Input parameters                                                                              *
     * ====================                                                                          *
     * @param name The name to search for.                                                           *
     * @param nameChosen The vector of strings to search in.                                         *
-    * @param sort A boolean value indicating whether to use a dichotomy search (if True) or a       *
-    * sequential search (if False).                                                                 *
     *                                                                                               *
     * Output parameters                                                                             *
     * ====================                                                                          *
@@ -578,7 +574,7 @@ bool isInReserve(const string &name, const vector<Card> &reserve, bool sort);
     *                                                                                               *
     *************************************************************************************************
     */
-bool isInVector(const string &name, const vector<string> &nameChosen, bool sort);
+bool isInVector(const string &name, const vector<string> &nameChosen);
 
 /**
     *************************************************************************************************

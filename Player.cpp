@@ -5,8 +5,6 @@
 #include "Player.h"
 #include "Card.h"
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
 #include <algorithm>
 #include <random>
 #include "Game.h"
@@ -73,16 +71,12 @@ bool Player::enoughPrestige() const
 // Get the next card of the player and remove it from his deck
 void Player::nextCard(int &card)
 {
-    unsigned int size = _deck.size();
-    if (size > 0)
+    if (_deck.empty())
     {
-        card = _deck[size - 1];
-        _deck.pop_back();
+        throw std::out_of_range("no more cards left !");
     }
-    else
-    {
-        throw out_of_range("no more cards left !");
-    }
+    card = _deck.back();
+    _deck.pop_back();
 }
 
 // Update prestige after a play
@@ -116,15 +110,14 @@ void Player::playsACard(Player &player, const vector<Card> &reserve)
 // Shuffles the targeted player's deck
 void Player::shuffle()
 {
-    srand(time(nullptr));
-    for (int &i: _deck)
-    {
-        int j = rand() % _deck.size();
-        swap(i, _deck[j]);
-    }
+    // Create a random number generator object
+    random_device rd;
+    mt19937 g(rd());
+    // Use the shuffle algorithm from the algorithm library to shuffle the elements of the player's deck vector _deck
+    ::shuffle(_deck.begin(), _deck.end(), g);
 }
 
-// Fiel the deck with cards which have the best chosen stat
+// Fill the deck with cards which have the best chosen stat
 void Player::fillDeckWithCriteria(const vector<Card> &reserve, Tri sortCriteria)
 {
     unsigned int size = _deck.size();
@@ -132,13 +125,16 @@ void Player::fillDeckWithCriteria(const vector<Card> &reserve, Tri sortCriteria)
     _deck.clear();
     int i = 0;
     int j;
+    bool found;
     while (_deck.size() < size)
     {
         j = 0;
-        while (j < sizeReserve && _deck.size() != size)
+        found = false;
+        while (j < sizeReserve && !found)
         {
             if (i == vectorOfRanks(reserve, sortCriteria)[j])
             {
+                found = true;
                 _deck.push_back(j);
             }
             j++;
@@ -147,112 +143,36 @@ void Player::fillDeckWithCriteria(const vector<Card> &reserve, Tri sortCriteria)
     }
 }
 
-bool isInVector(const string &name, const vector<string> &nameChosen, bool sort)
+bool isInVector(const string &name, const vector<string> &nameChosen)
 {
-    if (sort)
-    {
-        if (nameChosen.empty())
-        {
-            return false;
-        }
-
-        // dichotomy search
-        int start = 0;
-        unsigned int end = nameChosen.size() - 1;
-        bool found = false;
-
-        while (start <= end && !found)
-        {
-            int mid = (start + end) / 2;
-            if (nameChosen[mid] == name)
-            {
-                found = true;
-            }
-            else if (nameChosen[mid] < name)
-            {
-                start = mid + 1;
-            }
-            else
-            {
-                end = mid - 1;
-            }
-        }
-        return found;
-    }
-    else
-    {
-        // sequential search
-        unsigned int size = nameChosen.size();
-        bool found = false;
-        int i = 0;
-        while (i < size && !found)
-        {
-            if (name == nameChosen[i])
-            {
-                found = true;
-            }
-            i++;
-        }
-        return found;
-    }
+    // sequential search because the vector of chosen name is not sorted
+    return find(nameChosen.begin(), nameChosen.end(), name) != nameChosen.end();
 }
 
-bool isInReserve(const string &name, const vector<Card> &reserve, bool sort)
+bool isInReserve(const string &name, const vector<string> &reserveName, bool sort)
 {
     if (sort)
     {
         // dichotomy search
-        int start = 0;
-        unsigned int end = reserve.size() - 1;
-        bool found = false;
-
-        while (start <= end && !found)
-        {
-            int mid = (start + end) / 2;
-            if (reserve[mid].getName() == name)
-            {
-                found = true;
-            }
-            else if (reserve[mid].getName() < name)
-            {
-                start = mid + 1;
-            }
-            else
-            {
-                end = mid - 1;
-            }
-        }
-        return found;
+        return binary_search(reserveName.begin(), reserveName.end(), name);
     }
     else
     {
         // sequential search
-        unsigned int size = reserve.size();
-        bool found = false;
-        int i = 0;
-        while (i < size && !found)
-        {
-            if (name == reserve[i].getName())
-            {
-                found = true;
-            }
-            i++;
-        }
-        return found;
+        return find(reserveName.begin(), reserveName.end(), name) != reserveName.end();
     }
 }
 
-void enterName(const vector<Card> &reserve, vector<string> &nameChosen, string &name, int ind, bool sort)
+void enterName(const vector<string> &reserveName, vector<string> &nameChosen, string &name, int ind, bool sort)
 {
-    bool ok1 = false, ok2 = false;
-    cout << "Enter the name of your Card number " << ind << endl;
-    cin.ignore(256, '\n');
-    getline(cin,name);
+    bool ok1, ok2;
+    cout << "Enter the name of your Card number " << ind + 1 << endl;
+    getline(cin, name);
 
     // check if the card have already been entered
-    ok1 = !isInVector(name, nameChosen, sort);
-    ok2 = isInReserve(name, reserve, sort);
-
+    ok1 = !isInVector(name, nameChosen);
+    // check if the card exist in the reserve
+    ok2 = isInReserve(name, reserveName, sort);
     while (!ok1 || !ok2)
     {
         cout << "The name id incorrect : ";
@@ -265,9 +185,9 @@ void enterName(const vector<Card> &reserve, vector<string> &nameChosen, string &
             cout << "this card is not in the reserve.";
         }
         cout << endl;
-        cin >> name;
-        ok1 = !isInVector(name, nameChosen, sort);
-        ok2 = isInReserve(name, reserve, sort);
+        getline(cin, name);
+        ok1 = !isInVector(name, nameChosen);
+        ok2 = isInReserve(name, reserveName, sort);
     }
     nameChosen.push_back(name);
 }
@@ -279,60 +199,32 @@ void Player::fillDeckManually(const vector<Card> &reserve, bool sort)
     vector<string> nameChosen{};
     string name;
     int rank;
-    unsigned int size = reserve.size();
 
-    int j;
-    bool found;
+    // For the manual filling it is easier if we have the vector of name
+    vector<string> reserveName = {};
+    for (const auto &i: reserve)
+    {
+        reserveName.push_back(i.getName());
+    }
+
+    // remove characters from input stream
+    cin.ignore(256, '\n');
     for (int i = 0; i < 20; ++i)
     {
-        enterName(reserve, nameChosen, name, i, sort);
-        j = 0;
-        found = false;
+        enterName(reserveName, nameChosen, name, i, sort);
         if (sort)
         {
             // dichotomy search
-            int start = 0;
-            unsigned int end = reserve.size() - 1;
-
-            while (start <= end && !found)
-            {
-                int mid = (start + end) / 2;
-                if (reserve[mid].getName() == name)
-                {
-                    found = true;
-                    rank = mid;
-                }
-                else if (reserve[mid].getName() < name)
-                {
-                    start = mid + 1;
-                }
-                else
-                {
-                    end = mid - 1;
-                }
-            }
+            auto it = lower_bound(reserveName.begin(), reserveName.end(), name);
+            rank = it - reserveName.begin();
         }
         else
         {
             // sequential search
-            while (j < size && !found)
-            {
-                if (name == reserve[j].getName())
-                {
-                    rank = j;
-                    found = true;
-                }
-                j++;
-            }
+            auto it = find(reserveName.begin(), reserveName.end(), name);
+            rank = it - reserveName.begin();
         }
         _deck.push_back(rank);
-    }
-
-    cout << "Your deck is completed, your deck is :" << endl;
-    unsigned int deckSize = _deck.size();
-    for (int i = 0; i < deckSize; ++i)
-    {
-        cout << reserve[_deck[i]];
     }
 }
 
@@ -368,10 +260,9 @@ void Player::fillDeckRandom(const vector<Card> &reserve)
 void Player::fillDeck(const vector<Card> &reserve)
 {
     cout << "Here is the reserve of Card :" << endl;
-    unsigned int size = reserve.size();
-    for (int i = 0; i < size; ++i)
+    for (const auto &i: reserve)
     {
-        cout << reserve[i];
+        cout << i;
     }
 
     cout << endl << this->GetName() << ", How do you want to fill your deck? " << endl;
@@ -393,12 +284,17 @@ void Player::fillDeck(const vector<Card> &reserve)
             "15. Take the 20 cards with the best Magic (if equality : attack, then defense) in descending order\n"
             "16. Take the 20 cards with the best Magic (if equality : attack, then defense) in ascending order\n"
             "17. Take the 20 cards with the best Magic (if equality : defense, then attack) in descending order\n"
-            "18. Take the 20 cards with the best Magic (if equality : defense, then attack) in ascending order\n"
-         << endl;
+            "18. Take the 20 cards with the best Magic (if equality : defense, then attack) in ascending order\n";
     int choice;
     cin >> choice;
     while (choice < 1 || choice > 18)
     {
+        // If the user enter a long string we have an infinite loop, so we have to put this condition to avoid it
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
         cout << "Incorrect value, please enter a number between 1 and 18" << endl;
         cin >> choice;
     }
@@ -472,26 +368,26 @@ void Player::sortDeckManually(const vector<Card> &reserve)
         unsigned int size = _deck.size();
         for (int i = 0; i < size; i++)
         {
-            cout << i << " ";
+            cout << i + 1 << " ";
             cout << reserve[_deck[i]];
         }
         cout << endl << "Choose the indexes of cards you want to swap" << endl;
-        cout << "Enter -1, -1 to if you have finished" << endl;
+        cout << "Enter 0, 0 to if you have finished" << endl;
         cin >> a >> b;
-        while (a < -1 || a > 19 || b < -1 || b > 19)
+        while (a < 0 || a > 20 || b < 0 || b > 20)
         {
-            cout << "Incorrect values, please enter values between 0 and 19 (or -1 if you have finished)";
+            cout << "Incorrect values, please enter values between 1 and 20 (or 0 if you have finished)" << endl;
             cin >> a >> b;
         }
-        swap(_deck[a], _deck[b]);
-    } while (a != -1 && b != -1);
+        swap(_deck[a - 1], _deck[b - 1]);
+    } while (a != 0 && b != 0);
 }
 
 // Choose a strategy for human player
 void Player::chooseStrategy(const vector<Card> &reserve)
 {
     // Displays the actual player's deck
-    cout << this->GetName() << ", Here is your deck :" << endl;
+    cout << endl << this->GetName() << " , Here is your deck :" << endl;
     unsigned int size = _deck.size();
     for (int i = 0; i < size; i++)
     {
@@ -519,12 +415,18 @@ void Player::chooseStrategy(const vector<Card> &reserve)
             "16. Sort the deck with the best Magic (if equality : attack, then defense) in descending order\n"
             "17. Sort the deck with the best Magic (if equality : attack, then defense) in ascending order\n"
             "18. Sort the deck with the best Magic (if equality : defense, then attack) in descending order\n"
-            "19. Sort the deck with the best Magic (if equality : defense, then attack) in ascending order\n"
+            "19. Sort the deck with the best Magic (if equality : defense, then attack) in ascending order"
          << endl;
     int choice;
     cin >> choice;
     while (choice < 1 || choice > 18)
     {
+        // If the user enter a long string we have an infinite loop, so we have to put this condition to avoid it
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
         cout << "Incorrect value, please enter a number between 1 and 18" << endl;
         cin >> choice;
     }
@@ -589,13 +491,7 @@ void Player::chooseStrategy(const vector<Card> &reserve)
     }
     // During the game the first card called is the card at the top of the deck (in the last position)
     // So we reverse the vector to respect the strategy established earlier
-    unsigned int n = _deck.size();
-    for (int i = 0; i < n / 2; i++)
-    {
-        int temp = _deck[i];
-        _deck[i] = _deck[n - i - 1];
-        _deck[n - i - 1] = temp;
-    }
+    reverse(_deck.begin(), _deck.end());
 }
 
 
@@ -631,52 +527,43 @@ void Player::setAIDeck(char difficulty, const vector<Card> &reserve)
                 sortVectorOfCard(_deck, MDADesc, reserve);
         }
     }
-    else
+    else if (difficulty == '2')
     {
         // Set the difficulty for a medium AI
-        if (difficulty == '2')
+        switch (strategy)
         {
-            switch (strategy)
-            {
-                case 1:
-                    this->fillDeckWithCriteria(reserve, MADDesc);
-                    break;
-                case 2:
-                    this->fillDeckWithCriteria(reserve, ADMDesc);
-                    sortVectorOfCard(_deck, DAMDesc, reserve);
-                    break;
-                default:
-                    this->fillDeckWithCriteria(reserve, MDADesc);
-            }
+            case 1:
+                this->fillDeckWithCriteria(reserve, MADDesc);
+                break;
+            case 2:
+                this->fillDeckWithCriteria(reserve, ADMDesc);
+                sortVectorOfCard(_deck, DAMDesc, reserve);
+                break;
+            default:
+                this->fillDeckWithCriteria(reserve, MDADesc);
         }
-            // Set the difficulty for a hard AI
-        else
+    }
+    else
+    {
+        // Set the difficulty for a hard AI
+        switch (strategy)
         {
-            switch (strategy)
-            {
-                case 1:
-                    this->fillDeckWithCriteria(reserve, AMDDesc);
-                    sortVectorOfCard(_deck, ScoreWithCoefAMDDesc, reserve);
-                    break;
-                case 2:
-                    this->fillDeckWithCriteria(reserve, ScoreWithCoefAMDDesc);
-                    break;
-                default:
-                    this->fillDeckWithCriteria(reserve, AMDDesc);
-                    sortVectorOfCard(_deck, MADDesc, reserve);
-                    break;
-            }
+            case 1:
+                this->fillDeckWithCriteria(reserve, AMDDesc);
+                sortVectorOfCard(_deck, ScoreWithCoefAMDDesc, reserve);
+                break;
+            case 2:
+                this->fillDeckWithCriteria(reserve, ScoreWithCoefAMDDesc);
+                break;
+            default:
+                this->fillDeckWithCriteria(reserve, AMDDesc);
+                sortVectorOfCard(_deck, MADDesc, reserve);
+                break;
         }
     }
     // During the game the first card called is the card at the top of the deck (in the last position)
     // So we reverse the vector to respect the strategy established earlier
-    unsigned int n = _deck.size();
-    for (int i = 0; i < n / 2; i++)
-    {
-        int temp = _deck[i];
-        _deck[i] = _deck[n - i - 1];
-        _deck[n - i - 1] = temp;
-    }
+    reverse(_deck.begin(), _deck.end());
 }
 
 // The following methods are not in the instructions, but we had them because they are useful many times
@@ -734,3 +621,4 @@ bool Player::operator==(const Player &player)
 {
     return (_name == player._name && _prestige == player._prestige && this->compareDeck(player._deck));
 }
+

@@ -48,34 +48,17 @@ void Card::displayShort() const
 // Physical damages
 int Card::physicalDamage(const Card &card) const
 {
-    if (_attack > card._attack)
+    if (card._attack > _attack && card._attack > _defense)
     {
-        if (_attack < card._defense)
-        {
-            return 0;
-        }
-        else
-        {
-            return -(_attack - card._defense);
-        }
+        return card._attack - _defense;
+    }
+    else if (_attack > card._attack && _attack > card._defense)
+    {
+        return -(_attack - card._defense);
     }
     else
     {
-        if (card._attack == _attack)
-        {
-            return 0;
-        }
-        else
-        {
-            if (card._attack > _defense)
-            {
-                return (card._attack - _defense);
-            }
-            else
-            {
-                return 0;
-            }
-        }
+        return 0;
     }
 }
 
@@ -606,13 +589,13 @@ void Card::fill(const string &line)
                 stringstream stream(line);
                 string value;
 
-
                 /*
                  * Reads the first value (name) in the string until the next coma and stocks the first value onside the string "value"
                  * then uses "istringstream" in order to convert the string into an int then stocking it into the variable "_name".
                 */
                 getline(stream, _name, ',');
-
+                _name.erase(_name.begin()); // remove first "\"
+                _name.erase(_name.end() - 1); // remove last \""
 
                 /*
                  * Reads the second value (attack) in the string until the next coma and stocks the second value onside the string "value"
@@ -620,7 +603,6 @@ void Card::fill(const string &line)
                 */
                 getline(stream, value, ',');
                 istringstream(value) >> _attack;
-
 
                 /*
                  * Reads the third value (defense) in the string until the next coma and stocks the third value onside the string "value"
@@ -635,9 +617,7 @@ void Card::fill(const string &line)
                 */
                 getline(stream, value, ',');
                 istringstream(value) >> _magic;
-
             }
-
         }
     }
     file.close();

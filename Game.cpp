@@ -10,6 +10,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <numeric>
 
 using namespace std;
 
@@ -90,34 +91,20 @@ int Game::winner()
 // Get the vector of ranks from a vector of Card with a chosen sort criteria
 vector<int> vectorOfRanks(const vector<Card> &reserve, Tri sortCriteria)
 {
-    // Create the vector of card index
-    vector<int> cards = {};
     unsigned int size = reserve.size();
-    for (int i = 0; i < size; i++)
-    {
-        cards.push_back(i);
-    }
+    // Create the vector of card index
+    vector<int> index(size);
+    // fill the vector with 0 to reserve.size()
+    iota(index.begin(), index.end(), 0);
 
     // Sort the vector with the expected criteria
-    sortVectorOfCard(cards, sortCriteria, reserve);
+    sortVectorOfCard(index, sortCriteria, reserve);
 
     // Create the vector of ranks
-    vector<int> ranks = {};
-    int k;
-    bool found;
-    for (int i = 0; i < size; i++)
+    vector<int> ranks(size);
+    for (unsigned int i = 0; i < size; i++)
     {
-        k = 0;
-        found = false;
-        while (k < size && !found)
-        {
-            if (cards[k] == i)
-            {
-                ranks.push_back(k);
-                found = true;
-            }
-            k++;
-        }
+        ranks[index[i]] = i;
     }
     return ranks;
 }
@@ -215,6 +202,7 @@ void sortReserve(vector<Card> &reserve)
          });
 }
 
+// Fill the reserve with the file
 void Game::fillReserve(const string &filename)
 {
     ifstream file(filename);
@@ -242,7 +230,6 @@ void Game::fillReserve(const string &filename)
 
     sortReserve(_reserve);
     file.close();
-    _reserve.pop_back();
 }
 
 // The following methods are not in the instructions, but we had them because they are useful many times

@@ -1,100 +1,50 @@
-Katana,13,2,4
-Wakizashi,10,1,3
-Tanto,7,1,2
-Nodachi,15,3,5
-Kusarigama,9,2,4
-Shuriken,7,0,1
-Yumi,10,2,3
-Yari,12,3,4
-Tessen,8,1,2
-Hankyu,9,2,3
-Chokuto,10,2,3
-Kodachi,8,1,2
-Bo,7,2,3
-Jo,9,1,2
-Barbican,8,3,4
-Bokken,8,2,3
-Nunchaku,9,1,2
-Sai,7,1,2
-Tonfa,8,2,3
-Fukiya,6,0,1
-Chakram,9,1,2
-Glaive,11,3,4
-Maul,13,4,5
-Mace,10,3,4
-Warhammer,12,4,5
-Morningstar,11,3,4
-Flail,9,2,3
-Greatsword,15,5,6
-Longsword,12,4,5
-Scimitar,10,3,4
-Falchion,9,2,3
-Sabre,9,2,3
-Broadsword,11,3,4
-Dagger,7,1,2
-Stiletto,6,0,1
-Sickle,8,1,2
-Scythe,11,3,4
-Khopesh,9,2,3
-Knife,6,0,1
-Spear,11,3,4
-Lance,13,4,5
-Trident,10,3,4
-Pike,12,4,5
-Halberd,14,5,6
-Javelin,9,2,3
-Shortbow,8,1,2
-Longbow,10,3,4
-Crossbow,12,4,5
-Sling,6,0,1
-Shiv,5,0,1
-Shield,0,11,0
-Buckler,1,8,0
-Pavise,5,11,0
-Scutum,6,9,0
-Cloak,15,5,0
-Dragon,15,5,6
-Phoenix,12,3,4
-Unicorn,11,2,3
-Pegasus,10,1,2
-Basilisk,8,1,2
-Wyvern,7,1,2
-Manticore,9,2,3
-Cockatrice,7,1,2
-Medusa,8,2,3
-Hydra,12,4,5
-Chimera,10,3,4
-Naga,9,2,3
-Kraken,14,5,6
-Siren,6,0,1
-Merfolk,7,1,2
-Gorgon,8,2,3
-Minotaur,10,3,4
-Centaur,9,2,3
-Dryad,7,1,2
-Nymph,6,0,1
-Gnome,8,2,3
-Sprite,6,0,1
-Pixie,5,0,1
-Faerie,7,1,2
-Leprechaun,6,0,1
-Elf,8,2,3
-Dwarf,9,2,3
-Troll,10,3,4
-Giant,12,4,5
-Ogre,11,3,4
-Orc,9,2,3
-Goblin,7,1,2
-Hobgoblin,8,2,3
-Kobold,6,0,1
-Worg,7,1,2
-Griffon,14,5,6
-Castle,10,4,5
-Tower,6,2,3
-Fortress,12,5,6
-Palace,9,3,4
-Wall,8,3,4
-Gate,6,1,2
-Drawbridge,7,2,3
-Ballista,10,4,5
-Catapult,11,4,5
+"Dragonfire sword", 10, 5, 8
+"Goblin archer", 8, 6, 2
+"Mage of the arcane", 4, 8, 12
+"Paladin of light", 7, 10, 5
+"Giant spider", 6, 8, 3
+"Valkyrie's shield", 3, 13, 5
+"Fire elemental", 9, 4, 10
+"Ice golem", 8, 8, 4
+"Demonic pact", 4, 6, 11
+"Unicorn horn", 2, 9, 11
+"Cursed blade", 10, 3, 6
+"Gargoyle statue", 5, 10, 6
+"Necromancer's staff", 6, 6, 10
+"Angelic wings", 3, 12, 8
+"Demonic claws", 11, 5, 7
+"Holy grail", 2, 8, 12
+"Staff of the druid", 6, 8, 8
+"Phoenix feather", 8, 6, 9
+"Siren's song", 4, 8, 10
+"Dragon's breath", 9, 5, 8
+"Witch's brew", 5, 8, 8
+"Eagle eye", 7, 7, 6
+"Phoenix heart", 8, 7, 7
+"Mage's robe", 4, 8, 10
+"Knight's armor", 8, 8, 4
+"Goblin king crown", 6, 8, 6
+"Dragon's tail", 8, 6, 7
+"Phoenix egg", 4, 8, 10
+"Vampire's bite", 7, 8, 6
+"Gryphon's talon", 8, 7, 7
+"Sphinx's riddle", 4, 8, 10
+"Hydra's head", 9, 6, 7
+"Dragon's scale", 8, 8, 4
+"Phoenix's ashes", 6, 8, 8
+"Goblin's eye", 7, 7, 6
+"Dragon's wing", 8, 7, 7
+"Phoenix's rebirth", 4, 8, 10
+"Vampire's curse", 7, 8, 6
+"Gryphon's flight", 8, 7, 7
+"Sphinx's secret", 4, 8, 10
+"Hydra's venom", 9, 6, 7
+"Dragon's fury", 8, 8, 4
+"Phoenix's fire", 6, 8, 8
+"Goblin's dagger", 7, 7, 6
+"Dragon's roar", 8, 7, 7
+"Phoenix's rise", 4, 8, 10
+"Vampire's blood", 7, 8, 6
+"Gryphon's claw", 8, 7, 7
+"Sphinx's mystery", 4, 8, 10
+"Hydra's strength", 9, 6, 7
